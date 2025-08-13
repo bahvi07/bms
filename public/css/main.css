@@ -1,0 +1,12 @@
+:root{
+--bg-color: #F9FBFF;
+}
+/* #hs-header{
+    background-color:var(--bg-color);
+} */
+ .main-content{
+    background-color: var(--bg-color);
+ }
+#notification-button{
+    background-color:white;
+}

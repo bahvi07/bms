@@ -1,0 +1,92 @@
+{{-- Pending toggle system for hide sidebar --}}
+
+<!-- Sidebar -->
+<div id="hs-sidebar-header"  class="fixed top-0 start-0 bottom-0 z-60 w-64 bg-white border-e border-gray-200
+           transform -translate-x-full md:translate-x-0 transition-transform duration-300"
+    role="dialog" tabindex="-1" aria-label="Sidebar">
+  <div class="relative flex flex-col h-full max-h-full">
+    <!-- Header -->
+    <div class="mt-auto p-2 border-y border-gray-200">
+      <!-- Account Dropdown -->
+      <div class="hs-dropdown [--strategy:absolute] [--auto-close:inside] relative w-full inline-flex">
+        <button id="hs-sidebar-header-example-with-dropdown" type="button" class="w-full inline-flex shrink-0 items-center gap-x-2 p-2 text-start text-sm text-gray-800 rounded-md hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 mt-2" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+          <img class="shrink-0 size-5 rounded-full" src="https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0?q=80&w=320&h=320&auto=format&fit=facearea&facepad=3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
+          Tailor
+        </button>
+      </div>
+      <!-- End Account Dropdown -->
+    </div>
+    <!-- End Header -->
+
+    <!-- Body -->
+    <nav x-data="{ openDropdown: null }" class="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 space-y-2 p-4">
+      <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('dashboard') ? 'text-green-600' : 'text-black' }}">
+        <i class="ti ti-layout-dashboard mr-2"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('orders') ? 'text-green-600' : 'text-black' }}">
+        <i class="ti ti-shopping-cart mr-2"></i>
+        <span>Orders</span>
+      </a>
+      <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('tasks') ? 'text-green-600' : 'text-black' }}">
+        <i class="ti ti-checkbox mr-2"></i>
+        <span>Tasks</span>
+      </a>
+      <!-- Inventory Dropdown -->
+      <div class="space-y-1">
+        <button @click="openDropdown = openDropdown==='inventory' ? null : 'inventory'" class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100 focus:outline-none {{ request()->is('inventory*') ? 'text-green-600' : 'text-black' }}">
+          <i class="ti ti-package mr-2"></i>
+          <span>Inventory</span>
+          <svg :class="{'rotate-90': openDropdown==='inventory'}" class="ml-auto h-4 w-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <div x-show="openDropdown==='inventory'" class="pl-8 space-y-1" x-cloak>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-plus mr-2"></i>Add Purchase Entry</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-list mr-2"></i>Item List</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-truck mr-2"></i>Supplier</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-trending-up mr-2"></i>Inventory Reports</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-alert-hexagon mr-2"></i>Low Stock Alerts</a>
+        </div>
+      </div>
+      <!-- Staff Dropdown -->
+      <div class="space-y-1">
+        <button @click="openDropdown = openDropdown==='staff' ? null : 'staff'" class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100 focus:outline-none {{ request()->is('staff*') ? 'text-green-600' : 'text-black' }}">
+          <i class="ti ti-users mr-2"></i>
+          <span>Staff</span>
+          <svg :class="{'rotate-90': openDropdown==='staff'}" class="ml-auto h-4 w-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <div x-show="openDropdown==='staff'" class="pl-8 space-y-1" x-cloak>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-user-plus mr-2"></i>Add New Staff</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-users mr-2"></i>Staff List</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-currency-rupee mr-2"></i>Salary Management</a>
+        </div>
+      </div>
+      <!-- Attendance Dropdown -->
+      <div class="space-y-1">
+        <button @click="openDropdown = openDropdown==='attendance' ? null : 'attendance'" class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100 focus:outline-none {{ request()->is('attendance*') ? 'text-green-600' : 'text-black' }}">
+          <i class="ti ti-calendar mr-2"></i>
+          <span>Attendance</span>
+          <svg :class="{'rotate-90': openDropdown==='attendance'}" class="ml-auto h-4 w-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <div x-show="openDropdown==='attendance'" class="pl-8 space-y-1" x-cloak>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-users mr-2"></i>Staff Attendance</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-checkbox mr-2"></i>Mark Attendance</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-calendar mr-2"></i>View by Date</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-calendar-cog mr-2"></i>Monthly Summary</a>
+        </div>
+      </div>
+      <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('role') ? 'text-green-600' : 'text-black' }}">
+        <i class="ti ti-settings mr-2"></i>
+        <span>Role</span>
+      </a>
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 w-full text-left {{ request()->routeIs('logout') ? 'text-green-600' : 'text-black' }}">
+          <i class="ti ti-logout mr-2"></i>
+          <span>Logout</span>
+        </button>
+      </form>
+    </nav>
+    <!-- End Body -->
+  </div>
+</div>
+<!-- End Sidebar -->
