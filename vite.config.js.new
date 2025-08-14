@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
-// Static configuration for office network
 export default defineConfig(({ command }) => ({
     server: {
         host: '0.0.0.0',
@@ -32,6 +31,6 @@ export default defineConfig(({ command }) => ({
             refresh: true,
         }),
     ],
-    // Only set base URL in development
-    base: command === 'serve' ? 'http://localhost:5173' : '/build/',
+    // Set base URL for assets
+    base: command === 'serve' ? 'http://192.168.1.20:5173' : '/build/',
 }));

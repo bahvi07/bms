@@ -10,32 +10,43 @@
       <!-- Account Dropdown -->
       <div class="hs-dropdown [--strategy:absolute] [--auto-close:inside] relative w-full inline-flex">
         <button id="hs-sidebar-header-example-with-dropdown" type="button" class="w-full inline-flex shrink-0 items-center gap-x-2 p-2 text-start text-sm text-gray-800 rounded-md hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 mt-2" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-          <img class="shrink-0 size-5 rounded-full" src="https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0?q=80&w=320&h=320&auto=format&fit=facearea&facepad=3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
-          Tailor
+          <img class="shrink-0 size-7 rounded-md " src="https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0?q=80&w=320&h=320&auto=format&fit=facearea&facepad=3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
+        <span class="ml-3 font-bold text-lg">  Tailor</span>
         </button>
       </div>
       <!-- End Account Dropdown -->
     </div>
     <!-- End Header -->
+<!-- Close Button (Mobile Only) -->
+<button 
+    id="mobile-close-button"
+    class="md:hidden absolute top-4 right-4 p-2 text-gray-600 hover:bg-gray-200 rounded-lg focus:outline-none">
+    <!-- X Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+         viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+    </svg>
+</button>
 
     <!-- Body -->
     <nav x-data="{ openDropdown: null }" class="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 space-y-2 p-4">
       <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('dashboard') ? 'text-green-600' : 'text-black' }}">
-        <i class="ti ti-layout-dashboard mr-2"></i>
+        <i class="ti ti-layout-dashboard mr-2 text-xl"></i>
         <span>Dashboard</span>
       </a>
       <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('orders') ? 'text-green-600' : 'text-black' }}">
-        <i class="ti ti-shopping-cart mr-2"></i>
+        <i class="ti ti-shopping-cart mr-2 text-xl"></i>
         <span>Orders</span>
       </a>
       <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('tasks') ? 'text-green-600' : 'text-black' }}">
-        <i class="ti ti-checkbox mr-2"></i>
+        <i class="ti ti-checkbox mr-2 text-xl"></i>
         <span>Tasks</span>
       </a>
       <!-- Inventory Dropdown -->
       <div class="space-y-1">
         <button @click="openDropdown = openDropdown==='inventory' ? null : 'inventory'" class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100 focus:outline-none {{ request()->is('inventory*') ? 'text-green-600' : 'text-black' }}">
-          <i class="ti ti-package mr-2"></i>
+          <i class="ti ti-package mr-2 text-xl"></i>
           <span>Inventory</span>
           <svg :class="{'rotate-90': openDropdown==='inventory'}" class="ml-auto h-4 w-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -50,7 +61,7 @@
       <!-- Staff Dropdown -->
       <div class="space-y-1">
         <button @click="openDropdown = openDropdown==='staff' ? null : 'staff'" class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100 focus:outline-none {{ request()->is('staff*') ? 'text-green-600' : 'text-black' }}">
-          <i class="ti ti-users mr-2"></i>
+          <i class="ti ti-users mr-2 text-xl"></i>
           <span>Staff</span>
           <svg :class="{'rotate-90': openDropdown==='staff'}" class="ml-auto h-4 w-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -63,7 +74,7 @@
       <!-- Attendance Dropdown -->
       <div class="space-y-1">
         <button @click="openDropdown = openDropdown==='attendance' ? null : 'attendance'" class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100 focus:outline-none {{ request()->is('attendance*') ? 'text-green-600' : 'text-black' }}">
-          <i class="ti ti-calendar mr-2"></i>
+          <i class="ti ti-calendar mr-2 text-xl"></i>
           <span>Attendance</span>
           <svg :class="{'rotate-90': openDropdown==='attendance'}" class="ml-auto h-4 w-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -75,13 +86,13 @@
         </div>
       </div>
       <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('role') ? 'text-green-600' : 'text-black' }}">
-        <i class="ti ti-settings mr-2"></i>
+        <i class="ti ti-settings mr-2 text-xl"></i>
         <span>Role</span>
       </a>
       <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 w-full text-left {{ request()->routeIs('logout') ? 'text-green-600' : 'text-black' }}">
-          <i class="ti ti-logout mr-2"></i>
+          <i class="ti ti-logout mr-2 text-xl"></i>
           <span>Logout</span>
         </button>
       </form>
