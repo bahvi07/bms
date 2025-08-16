@@ -51,7 +51,7 @@
     <!-- Clear Button -->
     <button class="flex items-center gap-1 px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100">
         <i class="ti ti-filter-off"></i> 
-        Clear
+        Clear   
     </button>
 </div>
  <div class="lg:col-span-12 bg-white p-6 mt-6 rounded-lg shadow">
