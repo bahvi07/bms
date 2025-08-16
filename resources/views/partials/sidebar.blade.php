@@ -6,12 +6,12 @@
     role="dialog" tabindex="-1" aria-label="Sidebar">
   <div class="relative flex flex-col h-full max-h-full">
     <!-- Header -->
-    <div class="mt-auto p-2 border-y border-gray-200">
+    <div class="mt-auto p-1 border-y border-gray-200">
       <!-- Account Dropdown -->
       <div class="hs-dropdown [--strategy:absolute] [--auto-close:inside] relative w-full inline-flex">
-        <button id="hs-sidebar-header-example-with-dropdown" type="button" class="w-full inline-flex shrink-0 items-center gap-x-2 p-2 text-start text-sm text-gray-800 rounded-md hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 mt-2" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-          <img class="shrink-0 size-7 rounded-md " src="https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0?q=80&w=320&h=320&auto=format&fit=facearea&facepad=3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar">
-        <span class="ml-3 font-bold text-lg">  Tailor</span>
+        <button id="hs-sidebar-header-example-with-dropdown" type="button" class="w-full inline-flex shrink-0 items-center gap-x-2  text-start text-sm text-gray-800 rounded-md hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 mt-2" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+          <img class="shrink-0  rounded-md ml-8" width="95px" height="40px" src="{{ asset('storage/images/TMS.png') }}" alt="Avatar">
+        <!-- <span class="ml-3 font-bold text-lg">  Tailor</span> -->
         </button>
       </div>
       <!-- End Account Dropdown -->
@@ -35,7 +35,7 @@
         <i class="ti ti-layout-dashboard mr-2 text-xl"></i>
         <span>Dashboard</span>
       </a>
-      <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('orders') ? 'text-green-600' : 'text-black' }}">
+      <a href="{{route('dashboard.orders')}}" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('dashboard.orders*') ? 'text-green-600' : 'text-black' }}">
         <i class="ti ti-shopping-cart mr-2 text-xl"></i>
         <span>Orders</span>
       </a>

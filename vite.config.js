@@ -1,28 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
-// Static configuration for office network
-export default defineConfig(({ command }) => ({
-    server: {
-        host: '0.0.0.0',
-        hmr: {
-            host: '192.168.1.20', // Your office IP
-            port: 5173,
-            protocol: 'ws',
-        },
-        cors: true,
-        watch: {
-            usePolling: true,
-        },
-        strictPort: true,
-        port: 5173,
-    },
-    define: {
-        'process.env': {
-            ...process.env,
-            VITE_APP_URL: JSON.stringify('http://192.168.1.20:8000')
-        }
-    },
+export default defineConfig({
     plugins: [
         laravel({
             input: [
@@ -32,6 +11,4 @@ export default defineConfig(({ command }) => ({
             refresh: true,
         }),
     ],
-    // Only set base URL in development
-    base: command === 'serve' ? 'http://localhost:5173' : '/build/',
-}));
+});

@@ -8,5 +8,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/dashboard/orders', [DashboardController::class, 'orders'])->middleware(['auth', 'verified'])->name('dashboard.orders');
 
 require __DIR__.'/auth.php';

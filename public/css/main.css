@@ -10,3 +10,9 @@
 #notification-button{
     background-color:white;
 }
+#search-order{
+    background-color: var(--bg-color);
+}
+#priority-filter{
+    background-color: var(--bg-color);
+}

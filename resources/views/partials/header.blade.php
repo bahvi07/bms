@@ -18,7 +18,8 @@
       placeholder="Search" 
       class="w-full md:w-lg px-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-400"
     >
-  </div>
+  </div>  
+
 
   <!-- Right: Icons -->
   <div class="flex items-center space-x-4">
@@ -37,10 +38,13 @@
     </button>
 
     <!-- Profile Image -->
-    <div class="flex items-center space-x-2">
-      <img src="https://via.placeholder.com/40" 
-           alt="Profile" 
-           class="w-10 h-10 rounded-lg border border-gray-300 mr-5">
-    </div>
+  <div class="flex items-center space-x-2">
+  <img 
+    src="https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0?q=80&w=320&h=320&auto=format&fit=facearea&facepad=3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+    alt="Profile" 
+    class="w-10 h-10 rounded-lg border border-gray-300 mr-5 flex-shrink-0"
+  >
+</div>
+
   </div>
 </header>
