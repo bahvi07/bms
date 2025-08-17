@@ -1,30 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <!-- Vite Assets -->
+    <!-- Laravel Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
-    @include('partials.head') <!-- Additional meta tags, CSS links -->
+    {{-- Additional meta tags, CSS --}}
+    @include('partials.head')
+
+    {{-- Page-specific styles (if needed) --}}
+    @stack('styles')
 </head>
-<body>
-    <div class="dashboard-container">
+<body class="bg-gray-50 text-gray-800">
+    <div class="dashboard-container flex">
+        
+        {{-- Sidebar --}}
         @include('partials.sidebar')
 
-        <div class="main-content md:ml-64 ml-0 ">
+        {{-- Main Content --}}
+        <div class="main-content flex-1 md:ml-64 ml-0 transition-all duration-300">
+            
+            {{-- Header --}}
             @include('partials.header')
 
-            <div class="content-wrapper px-6">
-                @yield('content') <!-- Page-specific content -->
-            </div>
+            {{-- Page Content --}}
+            <main class="content-wrapper p-6">
+                @yield('content')
+            </main>
 
+            {{-- Footer --}}
             @include('partials.footer')
         </div>
     </div>  
 
-    @include('partials.scripts') <!-- All JS imports -->
+    {{-- Common Scripts --}}
+    @include('partials.scripts')
+
+    {{-- Page-specific scripts --}}
+    @stack('scripts')
 </body>
 </html>

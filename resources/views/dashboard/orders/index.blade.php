@@ -7,19 +7,23 @@
     {{-- Header Title --}}
     <div>
         <h1 class="text-2xl font-semibold">Orders</h1>
-        <h5 class="text-xs text-gray-500">Create a new Custome Order with measurements and tasks</h5>
+        <h5 class="text-xs text-gray-500">Create a new Customer Order with measurements and tasks</h5>
     </div>
-    {{-- New Order Button --}}
-    <!-- Full button (only visible on sm and above) -->
-<button class="bg-green-400 hidden sm:flex items-center hover:bg-green-600 text-white px-4 py-2 rounded-md">
+
+{{-- New Order Button --}}
+<!-- Full button (only visible on sm and above) -->
+<a href="{{ route('dashboard.orders.create') }}"
+   class="bg-green-400 hidden sm:flex items-center hover:bg-green-600 text-white px-4 py-2 rounded-md">
     <i class="ti ti-plus mr-2"></i>
     New Order
-</button>
+</a>
 
 <!-- Icon-only button (only visible below sm) -->
-<button class="bg-green-400 sm:hidden hover:bg-green-600 text-white px-3 py-2 rounded-md">
+<a href="{{ route('dashboard.orders.create') }}"
+   class="bg-green-400 sm:hidden hover:bg-green-600 text-white px-3 py-2 rounded-md">
     <i class="ti ti-plus"></i>
-</button>
+</a>
+
        
 </div>
 {{-- Search & Filter & Clear --}}
@@ -49,7 +53,7 @@
     </div>
 
     <!-- Clear Button -->
-    <button class="flex items-center gap-1 px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100">
+    <button class="flex items-center gap-1 px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100" id="clear-filters">
         <i class="ti ti-filter-off"></i> 
         Clear   
     </button>

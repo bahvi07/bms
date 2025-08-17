@@ -6,7 +6,8 @@
 <!-- Favicon -->
 <link rel="icon" href="{{ asset('storage/images/sewing.ico') }}">
 <!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
+{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <!-- Tabler Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.38.0/tabler-icons.min.css" />
 <!-- Font Awesome -->

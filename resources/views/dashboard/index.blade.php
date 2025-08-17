@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container mx-auto px-2 py-2">
+    @if (session('success'))
+        <div class="mb-4 px-4 py-2 bg-green-100 border border-green-400 text-green-700 rounded">
+            {{ session('success') }}
+        </div>
+    @endif
+    
     <h1 class="text-2xl font-semibold">Dashboard</h1>
     <h5 class="text-xs mb-6 text-gray-500 ">Welcome to Your Tailoring Command Center</h5>
 

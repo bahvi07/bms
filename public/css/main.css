@@ -16,3 +16,9 @@
 #priority-filter{
     background-color: var(--bg-color);
 }
+#clear-filters{
+    background-color: var(--bg-color);
+}
+#order-form input{
+    background-color: var(--bg-color);
+}
