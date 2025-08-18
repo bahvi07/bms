@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MasterController;
 use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
@@ -26,4 +27,17 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
     ]);
 });
 
+
+// Master routes
+Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
+    Route::resource('masters',MasterController::class)->names([
+        'index'=>'dashboard.masters',
+        'create'=>'dashboard.masters.create',
+        'store'=>'dashboard.masters.store',
+        'show'=>'dashboard.masters.show',
+        'edit'=>'dashboard.masters.edit',
+        'update'=>'dashboard.masters.update',
+        'destroy'=>'dashboard.masters.destroy',
+    ]);
+});
 require __DIR__.'/auth.php';

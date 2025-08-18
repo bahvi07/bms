@@ -6,8 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <!-- Laravel Vite Assets -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+     @vite('resources/css/app.css') 
     {{-- Additional meta tags, CSS --}}
     @include('partials.head')
 

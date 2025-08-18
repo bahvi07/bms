@@ -1,24 +1,31 @@
+/* Common bg color variable */
 :root{
 --bg-color: #F9FBFF;
 }
-/* #hs-header{
-    background-color:var(--bg-color);
-} */
+
+/* Main content background color */
  .main-content{
     background-color: var(--bg-color);
  }
-#notification-button{
+/* Button styles */
+#global-search,#notification-button{
     background-color:white;
 }
-#search-order{
-    background-color: var(--bg-color);
-}
-#priority-filter{
-    background-color: var(--bg-color);
-}
-#clear-filters{
-    background-color: var(--bg-color);
-}
-#order-form input{
+
+#search-order,#priority-filter,#clear-filters,#order-form input,#garment-type,
+#fabric-type,
+#color-type,
+#item-qty,
+#unit-price,
+#instruction,
+#chest,
+#waist,
+#hips,
+#shoulder-width,
+#arm-length,
+#neck_size,
+#length,
+#devliery-date,
+#set-priority{
     background-color: var(--bg-color);
 }

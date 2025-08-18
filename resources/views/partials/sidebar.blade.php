@@ -96,6 +96,22 @@
           <span>Logout</span>
         </button>
       </form>
+      {{-- Masters dropdown --}}
+      <div class="space-y-1">
+        <button @click="openDropdown = openDropdown==='masters' ? null : 'masters'" class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100 focus:outline-none {{ request()->is('masters*') ? 'text-green-600' : 'text-black' }}">
+          <i class="ti ti-database mr-2 text-xl"></i>
+          <span>Masters</span>
+          <svg :class="{'rotate-90': openDropdown==='masters'}" class="ml-auto h-4 w-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <div x-show="openDropdown==='masters'" class="pl-8 space-y-1" x-cloak>
+         <a href="{{route('dashboard.masters')}}" class="flex items-center  py-2 rounded hover:bg-gray-100 {{ request()->routeIs('dashboard.masters*') ? 'text-green-600' : 'text-black' }}">
+        <i class="ti ti-shirt mr-2 "></i>
+        <span>Garment</span>
+      </a>
+           <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-hierarchy-2 mr-2"></i>Relation</a>
+          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-brand-databricks mr-2"></i>Fabric</a>
+
+      </div>
     </nav>
     <!-- End Body -->
   </div>

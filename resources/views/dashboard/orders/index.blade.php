@@ -42,10 +42,10 @@
     <div class="">
         <select 
             id="priority-filter"
-            class="border py-1 px-3 rounded-md pr-8 bg-white 
+            class="border-none py-1 px-3 rounded-md pr-8 bg-white 
                    focus:outline-none focus:ring focus:border-blue-400"
         >
-            <option value="All">All Priorities</option>
+            <option value="All" disabled selected >All Priorities</option>
             <option value="Urgent">Urgent</option>
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Clear Button -->
-    <button class="flex items-center gap-1 px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100" id="clear-filters">
+    <button class="flex items-center gap-1 px-3 py-1 border-none rounded-md text-gray-600 hover:bg-gray-100" id="clear-filters">
         <i class="ti ti-filter-off"></i> 
         Clear   
     </button>

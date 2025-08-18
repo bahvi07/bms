@@ -14,10 +14,10 @@
   <!-- Left: Search Bar -->
   <div class="flex items-center w-full ml-4 max-w-md">
     <input 
-      type="text" 
+      type="search" 
       placeholder="Search" 
       class="w-full md:w-lg px-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-400"
-    >
+   id="global-search" >
   </div>  
 
 
