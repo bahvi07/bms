@@ -89,14 +89,7 @@
         <i class="ti ti-settings mr-2 text-xl"></i>
         <span>Role</span>
       </a>
-      <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 w-full text-left {{ request()->routeIs('logout') ? 'text-green-600' : 'text-black' }}">
-          <i class="ti ti-logout mr-2 text-xl"></i>
-          <span>Logout</span>
-        </button>
-      </form>
-      {{-- Masters dropdown --}}
+       {{-- Masters dropdown --}}
       <div class="space-y-1">
         <button @click="openDropdown = openDropdown==='masters' ? null : 'masters'" class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100 focus:outline-none {{ request()->is('masters*') ? 'text-green-600' : 'text-black' }}">
           <i class="ti ti-database mr-2 text-xl"></i>
@@ -108,10 +101,19 @@
         <i class="ti ti-shirt mr-2 "></i>
         <span>Garment</span>
       </a>
+       <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-ruler-measure mr-2"></i>Measurments</a>
            <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-hierarchy-2 mr-2"></i>Relation</a>
           <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-brand-databricks mr-2"></i>Fabric</a>
 
       </div>
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 w-full text-left {{ request()->routeIs('logout') ? 'text-green-600' : 'text-black' }}">
+          <i class="ti ti-logout mr-2 text-xl"></i>
+          <span>Logout</span>
+        </button>
+      </form>
+     
     </nav>
     <!-- End Body -->
   </div>

@@ -7,6 +7,22 @@
  .main-content{
     background-color: var(--bg-color);
  }
+ /* Ensure full height layout */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main content takes available space */
+.main-content {
+    min-height: calc(100vh - 4rem); /* Adjust based on your header height */
+}
+
+/* Footer stays at bottom */
+footer {
+    width: 100%;
+}
 /* Button styles */
 #global-search,#notification-button{
     background-color:white;
@@ -14,7 +30,7 @@
 
 #search-order,#priority-filter,#clear-filters,#order-form input,#garment-type,
 #fabric-type,
-#color-type,
+#color,
 #item-qty,
 #unit-price,
 #instruction,
@@ -26,6 +42,8 @@
 #neck_size,
 #length,
 #devliery-date,
-#set-priority{
+#set-priority,
+#garment-name,
+#description{
     background-color: var(--bg-color);
 }

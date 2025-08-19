@@ -1,4 +1,5 @@
 <script src="//unpkg.com/alpinejs" defer></script>
+<script src="{{asset('js/main.js')}}"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const sidebar = document.getElementById('hs-sidebar-header');

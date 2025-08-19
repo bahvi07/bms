@@ -121,18 +121,11 @@
 
     <div>
         <label for="color" class="block text-sm font-medium text-gray-700 mb-2">
-            Color*
+            Color
         </label>
-        <select 
-            id="color-type"
-            class="w-full border-none py-1 px-3 rounded-md pr-8 bg-white 
-                   focus:outline-none focus:ring focus:border-blue-400"
-        >
-            <option value="All" disabled selected>e.g. Navy Blue</option>
-            <option value="Urgent">Red</option>
-            <option value="Medium">Green</option>
-            <option value="Low">Blue</option>
-        </select>
+        <input type="text" id="color" name="color"
+                   placeholder="Enter color"
+                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-1.5">
     </div>
 </div>
 
