@@ -94,6 +94,7 @@
         "string-width": "^4.2.3",
         "strip-ansi": "^6.0.1",
         "supports-color": "^8.1.1",
+        "sweetalert2": "^11.22.4",
         "tapable": "^2.2.2",
         "tar": "^7.4.3",
         "tinyglobby": "^0.2.14",

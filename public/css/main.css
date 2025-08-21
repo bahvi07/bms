@@ -16,7 +16,7 @@ html, body {
 
 /* Main content takes available space */
 .main-content {
-    min-height: calc(100vh - 4rem); /* Adjust based on your header height */
+    min-height: calc(100vh - 2px); 
 }
 
 /* Footer stays at bottom */

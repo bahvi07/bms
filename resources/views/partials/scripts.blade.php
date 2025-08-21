@@ -1,4 +1,5 @@
 <script src="//unpkg.com/alpinejs" defer></script>
+@vite('resources/js/app.js')
 <script src="{{asset('js/main.js')}}"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {

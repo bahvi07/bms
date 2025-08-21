@@ -29,15 +29,21 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
 
 
 // Master routes
+// Master routes
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
-    Route::resource('masters',MasterController::class)->names([
-        'index'=>'dashboard.masters',
-        'create'=>'dashboard.masters.create',
-        'store'=>'dashboard.masters.store',
-        'show'=>'dashboard.masters.show',
-        'edit'=>'dashboard.masters.edit',
-        'update'=>'dashboard.masters.update',
-        'destroy'=>'dashboard.masters.destroy',
+    Route::resource('masters', MasterController::class)->names([
+        'index'   => 'dashboard.masters',
+        'create'  => 'dashboard.masters.create', 
+        'store'   => 'dashboard.masters.store',
+        'show'    => 'dashboard.masters.show',
+        'edit'    => 'dashboard.masters.edit',
+        'update'  => 'dashboard.masters.update',
+        'destroy' => 'dashboard.masters.destroy',
     ]);
+
+    
+    Route::post('/masters/import', [MasterController::class, 'importGarments'])
+        ->name('dashboard.masters.importGarments');
 });
+
 require __DIR__.'/auth.php';

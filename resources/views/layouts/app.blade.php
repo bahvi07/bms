@@ -41,5 +41,6 @@
 
     {{-- Page-specific scripts --}}
     @stack('scripts')
+    <div id="toast-container" class="toast toast-top toast-end z-50"></div>
 </body>
 </html>
