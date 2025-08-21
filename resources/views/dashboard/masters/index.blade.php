@@ -11,7 +11,7 @@
 
 <div class="flex items-center gap-3">
         <button type="submit" id="importBtn" class="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md flex items-center">
-            <i class="ti ti-upload mr-2"></i> Import Excel
+            <i class="ti ti-download mr-2"></i> Import Excel
         </button>
 
         <button onclick="openCreateModal()"
@@ -43,9 +43,13 @@
                     <td class="px-6 py-4 col-description">{{ $garment->description }}</td>
                     <td class="px-6 py-4 text-center">
                         <button onclick='openEditModal(@json($garment))'
-                            class="text-white btn bg-green-500 hover:bg-green-600 rounded-lg px-5">Edit</button>
+                            class="text-white btn bg-green-500 hover:bg-green-600 rounded-lg px-5 border-none">
+                        <i class="ti ti-edit"></i>
+                        </button>
                         <button onclick="deleteGarment({{ $garment->id }})"
-                            class="text-white btn bg-red-500 hover:bg-red-700 rounded-lg px-5 ml-2">Delete</button>
+                            class="text-white btn bg-red-500 hover:bg-red-700 rounded-lg px-5 ml-2 border-none">
+                        <i class="ti ti-trash"></i>
+                        </button>
                     </td>
                 </tr>
                 @endforeach
@@ -94,7 +98,8 @@
             <h3 class="text-xl font-semibold text-gray-800 mb-4">📥 Import Garments from Excel</h3>
             <p class="text-sm text-gray-500 mb-6">Upload your Excel file to import garment data.</p>
 
-          <form id="importForm" action="{{ route('dashboard.masters.importGarments') }}" method="POST" enctype="multipart/form-data">
+            {{-- action="{{ route('dashboard.masters.importGarments') }}" method="POST" --}}
+          <form id="importForm" enctype="multipart/form-data"   >
                 @csrf
                 <input type="file" name="file" accept=".xlsx, .xls, .csv" required
                     class="file-input file-input-bordered w-full max-w-xs mb-4 bg-gray-100">
@@ -102,7 +107,7 @@
                 <div class="flex justify-end gap-3 pt-4 border-t">
                     <button type="button" onclick="document.getElementById('importModal').close()" 
                         class="btn bg-red-500 text-white hover:bg-red-600">Cancel</button>
-                    <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-700" id="importSubmit">Import</button>
+                    <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-700" id="importSubmitBtn">Import</button>
                 </div>
             </form>
         </div>

@@ -103,12 +103,17 @@ class MasterController extends Controller
         $request->validate([
             'file' => 'required|file|mimes:xlsx,csv,xls',
         ]);
+$file=$request->file('file');
+     $rows= Excel::toArray([],$file)[0]; // Get first sheet data
+    foreach($rows as $index=>$row){
+        if($index === 0) continue; // Skip header row
+          Garment::firstOrCreate(
+            ['name' => $row[0]], // assuming first column = name
+            ['description' => $row[1] ?? null] // second column = description
+        );
+    }
 
-      Excel::import(new GarmentsImport, $request->file('file'));
+    return response()->json(['success' => count($rows)-1]); // minus header row
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Garments imported successfully!'
-        ], 200);
     }
 }

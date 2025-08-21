@@ -47,3 +47,34 @@ footer {
 #description{
     background-color: var(--bg-color);
 }
+
+
+/* Data tables custom css */
+/* Custom DataTables pagination */
+.dataTables_wrapper .dataTables_paginate {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 6px 12px;
+  margin: 0 3px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #f8f9fa;
+  color: #333 !important;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #0d6efd;
+  color: #fff !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #0d6efd !important;
+  color: #fff !important;
+  border: 1px solid #0d6efd !important;
+}

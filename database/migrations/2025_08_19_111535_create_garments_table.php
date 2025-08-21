@@ -13,7 +13,7 @@ public function up(): void
 {
     Schema::create('garments', function (Blueprint $table) {
         $table->id();
-        $table->string('name');          // Garment Name
+        $table->string('name')->unique();          // Garment Name
         $table->text('description')->nullable(); // Description (optional)
         $table->timestamps();            // created_at, updated_at
     });
