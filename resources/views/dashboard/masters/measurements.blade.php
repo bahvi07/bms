@@ -6,7 +6,7 @@
     <div class="flex items-center justify-between mb-6">
         <div>
             <h1 class="text-2xl font-semibold">Master</h1>
-            <h5 class="text-xs text-gray-500">Manage garment types easily</h5>
+            <h5 class="text-xs text-gray-500">Manage Measurment types easily</h5>
         </div>
 
 <div class="flex items-center gap-3">
@@ -16,7 +16,7 @@
 
         <button onclick="openCreateModal()"
             class="btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md hidden sm:flex items-center">
-            <i class="ti ti-plus mr-2"></i> Add new Garment
+            <i class="ti ti-plus mr-2"></i> Add new Measurement
         </button>
         <button onclick="openCreateModal()" 
             class="btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md sm:hidden">
@@ -33,17 +33,19 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr class="text-center bg-gray-800 text-white">
                 <th class="px-6 py-3">S.No.</th>
-                <th class="px-6 py-3">Garment</th>
+                <th class="px-6 py-3">Measurment Label </th>
                 <th class="px-6 py-3">Description</th>
+                <th class="px-6 py-3">Unit</th>
                 <th class="px-6 py-3">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($garments as $garment)
+            {{-- @foreach($garments as $garment)
             <tr id="row-{{ $garment->id }}" class="bg-white border-b text-center">
                 <td class="px-6 py-4">{{ $loop->iteration }}</td>
                 <td class="px-6 py-4 col-name">{{ $garment->name }}</td>
                 <td class="px-6 py-4 col-description">{{ $garment->description }}</td>
+                 <td class="px-6 py-4 col-description">{{ $garment->unit }}</td>
                 <td class="px-6 py-4 text-center">
                     <button onclick='openEditModal(@json($garment))'
                         class="text-white btn bg-green-500 hover:bg-green-600 rounded-lg px-5 border-none">
@@ -55,7 +57,7 @@
                     </button>
                 </td>
             </tr>
-            @endforeach
+            @endforeach --}}
         </tbody>
     </table>
 

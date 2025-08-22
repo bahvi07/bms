@@ -29,21 +29,24 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
 
 
 // Master routes
-// Master routes
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
-    Route::resource('masters', MasterController::class)->names([
-        'index'   => 'dashboard.masters',
-        'create'  => 'dashboard.masters.create', 
-        'store'   => 'dashboard.masters.store',
-        'show'    => 'dashboard.masters.show',
-        'edit'    => 'dashboard.masters.edit',
-        'update'  => 'dashboard.masters.update',
-        'destroy' => 'dashboard.masters.destroy',
-    ]);
+    Route::resource('masters', MasterController::class)
+        ->except(['show']) // 👈 exclude "show" since we don’t need it
+        ->names([
+            'index'   => 'dashboard.masters',
+            'create'  => 'dashboard.masters.create',
+            'store'   => 'dashboard.masters.store',
+            'edit'    => 'dashboard.masters.edit',
+            'update'  => 'dashboard.masters.update',
+            'destroy' => 'dashboard.masters.destroy',
+        ]);
+
+    // custom route for measurements
+    Route::get('/masters/measurements', [MasterController::class, 'measurements'])
+        ->name('dashboard.masters.measurements');
 
     
     Route::post('/masters/import', [MasterController::class, 'importGarments'])
         ->name('dashboard.masters.importGarments');
 });
-
 require __DIR__.'/auth.php';

@@ -116,4 +116,11 @@ $file=$request->file('file');
     return response()->json(['success' => count($rows)-1]); // minus header row
 
     }
+
+    public function measurements()
+    {
+        // This method can be used to show garment measurements
+        // For now, it just returns a view
+        return view('dashboard.masters.measurements');
+    }
 }

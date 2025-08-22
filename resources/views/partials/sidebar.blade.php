@@ -89,23 +89,54 @@
         <i class="ti ti-settings mr-2 text-xl"></i>
         <span>Role</span>
       </a>
-       {{-- Masters dropdown --}}
-      <div class="space-y-1">
-        <button @click="openDropdown = openDropdown==='masters' ? null : 'masters'" class="flex items-center w-full px-4 py-2 rounded hover:bg-gray-100 focus:outline-none {{ request()->is('masters*') ? 'text-green-600' : 'text-black' }}">
-          <i class="ti ti-database mr-2 text-xl"></i>
-          <span>Masters</span>
-          <svg :class="{'rotate-90': openDropdown==='masters'}" class="ml-auto h-4 w-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <div x-show="openDropdown==='masters'" class="pl-8 space-y-1" x-cloak>
-         <a href="{{route('dashboard.masters')}}" class="flex items-center  py-2 rounded hover:bg-gray-100 {{ request()->routeIs('dashboard.masters*') ? 'text-green-600' : 'text-black' }}">
-        <i class="ti ti-shirt mr-2 "></i>
-        <span>Garment</span>
-      </a>
-       <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-ruler-measure mr-2"></i>Measurments</a>
-           <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-hierarchy-2 mr-2"></i>Relation</a>
-          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-brand-databricks mr-2"></i>Fabric</a>
+  {{-- Masters dropdown --}}
+<div x-data="{ openDropdown: '{{ request()->is('masters*') ? 'masters' : '' }}' }" class="space-y-1">
 
-      </div>
+    {{-- Main button --}}
+    <button 
+        @click="openDropdown = openDropdown==='masters' ? null : 'masters'" 
+        class="flex items-center w-full px-4 py-2 rounded focus:outline-none 
+        {{ request()->is('masters*') ? 'text-green-600 bg-gray-100' : 'text-black hover:bg-gray-100' }}">
+        
+        <i class="ti ti-database mr-2 text-xl"></i>
+        <span>Masters</span>
+        <svg :class="{'rotate-90': openDropdown==='masters'}" 
+             class="ml-auto h-4 w-4 transition-transform"
+             fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+             <path d="M9 5l7 7-7 7"/>
+        </svg>
+    </button>
+
+    {{-- Submenu --}}
+    <div x-show="openDropdown==='masters'" x-cloak class="pl-8 space-y-1">
+        
+        <a href="{{ route('dashboard.masters') }}"
+           class="flex items-center py-2 rounded hover:bg-gray-100
+           {{ request()->routeIs('dashboard.masters') ? 'text-green-600 font-semibold' : 'text-black' }}">
+           <i class="ti ti-shirt mr-2"></i>
+           <span>Garment</span>
+        </a>
+
+        <a href="{{ route('dashboard.masters.measurements') }}"
+           class="flex items-center py-2 rounded hover:bg-gray-100
+           {{ request()->routeIs('dashboard.masters.measurements') ? 'text-green-600 font-semibold' : 'text-black' }}">
+           <i class="ti ti-ruler-measure mr-2"></i>
+           <span>Measurements</span>
+        </a>
+
+        <a href="#" class="flex items-center py-2 rounded hover:bg-gray-100 text-black">
+            <i class="ti ti-hierarchy-2 mr-2"></i>
+            <span>Relation</span>
+        </a>
+
+        <a href="#" class="flex items-center py-2 rounded hover:bg-gray-100 text-black">
+            <i class="ti ti-brand-databricks mr-2"></i>
+            <span>Fabric</span>
+        </a>
+    </div>
+</div>
+
+
       <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 w-full text-left {{ request()->routeIs('logout') ? 'text-green-600' : 'text-black' }}">
