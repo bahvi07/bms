@@ -4,4 +4,4 @@
 @tailwind components;
 @tailwind utilities;
 @plugin "daisyui";
-@import "datatables-custom.css";
+/* @import "datatables-custom.css"; */
