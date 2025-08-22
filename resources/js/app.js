@@ -16,7 +16,10 @@ import 'datatables.net-dt/css/dataTables.dataTables.css';
 // Custom scripts
 import './main.js';
 import './importExcel.js';
-
+import './garments.js';
+import './delete.js';
+import './measurements.js';
+import './modals.js';
 // Alpine setup
 Alpine.plugin(collapse);
 window.Alpine = Alpine;
@@ -28,4 +31,5 @@ window.Swal = Swal;
 
 document.addEventListener("DOMContentLoaded", function () {
     $('#garments-table').DataTable();
+    $('#measurements-table').DataTable();
 });

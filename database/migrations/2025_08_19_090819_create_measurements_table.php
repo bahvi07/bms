@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('measurements', function (Blueprint $table) {
             $table->id();
-            $table->string('name');      // e.g. Chest, Neck, Waist
+            $table->string('label');      // e.g. Chest, Neck, Waist
+            $table->string('description')->nullable();
         $table->string('unit')->nullable(); // optional: inch, cm
             $table->timestamps();
         });

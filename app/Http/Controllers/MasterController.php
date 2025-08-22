@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Garment;
 use App\Imports\GarmentsImport;
+use App\Models\Measurements;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
 
@@ -116,11 +117,96 @@ $file=$request->file('file');
     return response()->json(['success' => count($rows)-1]); // minus header row
 
     }
+    /**
+     * Display measurements
+     */
 
-    public function measurements()
+   public function measurements()
+{
+    $measurements = Measurements::all();
+    return view('dashboard.masters.measurements', compact('measurements'));
+}
+
+
+    public function importMeasurements(Request $request)
     {
-        // This method can be used to show garment measurements
-        // For now, it just returns a view
-        return view('dashboard.masters.measurements');
+        $request->validate([
+            'file' => 'required|file|mimes:xlsx,csv,xls',
+        ]);
+        $file= $request->file('file');
+        $rows=Excel::toArray([], $file)[0]; // Get first sheet data
+        foreach($rows as $index => $row) {
+            if($index === 0) continue; // Skip header row
+            if(empty($row[0]) || empty($row[1]) || empty($row[2])) continue; // Skip rows with empty label, description or unit
+
+            Measurements::firstOrCreate(
+                ['label' => $row[0]], // assuming first column = label
+                [
+                    'description' => $row[1] ?? null, // second column = description
+                    'unit' => $row[2] ?? null // third column = unit
+                ]
+            );
+        }
+        return response()->json(['success' => count($rows) - 1]); // minus header row
+    }
+
+       public function destroyMeasurements($id)
+{
+    $measurement = Measurements::findOrFail($id);
+    $measurement->delete();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Measurement deleted successfully!'
+    ], 200);
+}
+
+public function createMeasurements(Request $request)
+{
+    try {
+        $validated = $request->validate([
+            'label' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'unit' => 'required|string|max:50',
+        ]);
+
+        $measurement = Measurements::create($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Measurement filed created successfully!',
+            'measurement' => $measurement
+        ], 201);
+
+    } catch (ValidationException $e) {
+        return response()->json([
+            'success' => false,
+            'errors'  => $e->errors(),
+        ], 422);
     }
 }
+public function updateMeasurements(Request $request, $id)
+{
+    try {
+        $validated = $request->validate([
+            'label' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'unit' => 'required|string|max:50',
+        ]);
+
+        $measurement = Measurements::findOrFail($id);
+        $measurement->update($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Measurement field updated successfully!',
+            'measurement' => $measurement
+        ], 200);
+
+    } catch (ValidationException $e) {
+        return response()->json([
+            'success' => false,
+            'errors'  => $e->errors(),
+        ], 422);
+    }
+}}

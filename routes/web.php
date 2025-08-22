@@ -46,7 +46,16 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
         ->name('dashboard.masters.measurements');
 
     
-    Route::post('/masters/import', [MasterController::class, 'importGarments'])
-        ->name('dashboard.masters.importGarments');
+    Route::post('/masters/import-garments', [MasterController::class, 'importGarments'])
+    ->name('dashboard.masters.importGarments');
+
+Route::post('/masters/import-measurements', [MasterController::class, 'importMeasurements'])
+    ->name('dashboard.masters.importMeasurements');
+Route::delete('/masters/measurement/{id}', [MasterController::class, 'destroyMeasurements'])
+    ->name('dashboard.masters.destroyMeasurements');
+        Route::post('/masters/create-measurement/', [MasterController::class, 'createMeasurements'])
+        ->name('dashboard.masters.createMeasurements');
+    Route::put('/masters/update-measurement/{id}', [MasterController::class, 'updateMeasurements'])
+        ->name('dashboard.masters.updateMeasurements');
 });
 require __DIR__.'/auth.php';
