@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const measurement = data.measurement || data.data || data;
       const tbody = document.querySelector('#measurements-table tbody');
+      const iterator = tbody.querySelectorAll('tr').length + 1;
       if (id) {
         const row = document.getElementById(`row-${id}`);
         if (row) {
@@ -63,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
           tr.id = `row-${measurement.id}`;
           tr.className = 'bg-white border-b text-center';
           tr.innerHTML = `
-            <td class="px-6 py-4 col-label">${measurement.name ?? ''}</td>
+            <td class="px-6 py-4 col-iteration">${iterator}</td>
+            <td class="px-6 py-4 col-label">${measurement.label ?? ''}</td>
             <td class="px-6 py-4 col-description">${measurement.description ?? ''}</td>
              <td class="px-6 py-4 col-unit">${measurement.unit ?? ''}</td>
             <td class="px-6 py-4 text-center">
@@ -80,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
           tbody.appendChild(tr);
         }
       }
-
+location.reload();
       Swal.fire('Success!', data.message || 'measurement saved successfully.', 'success');
       document.getElementById('my_modal_1')?.close();
       measurementForm.reset();

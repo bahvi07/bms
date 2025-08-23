@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const garment = data.garment || data.data || data;
       const tbody = document.querySelector('#garments-table tbody');
-
+ const iterator = tbody.querySelectorAll('tr').length + 1;
       if (id) {
         const row = document.getElementById(`row-${id}`);
         if (row) {
@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
           tr.id = `row-${garment.id}`;
           tr.className = 'bg-white border-b text-center';
           tr.innerHTML = `
-            <td class="px-6 py-4 col-name">${garment.name ?? ''}</td>
+           <td class="px-6 py-4 col-iteration">${iterator}</td>
+              <td class="px-6 py-4 col-name">${garment.name ?? ''}</td>
             <td class="px-6 py-4 col-description">${garment.description ?? ''}</td>
             <td class="px-6 py-4 text-center">
               <button onclick='openEditModal(${JSON.stringify(garment)})'
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
           tbody.appendChild(tr);
         }
       }
-
+location.reload();
       Swal.fire('Success!', data.message || 'Garment saved successfully.', 'success');
       document.getElementById('my_modal_1')?.close();
       garmentForm.reset();

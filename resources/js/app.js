@@ -19,6 +19,7 @@ import './importExcel.js';
 import './garments.js';
 import './delete.js';
 import './measurements.js';
+import './relations.js';
 import './modals.js';
 // Alpine setup
 Alpine.plugin(collapse);
@@ -30,6 +31,18 @@ window.Swal = Swal;
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    $('#garments-table').DataTable();
-    $('#measurements-table').DataTable();
+    $('#garments-table').DataTable({
+        responsive: true,
+        scrollX: true
+    });
+
+    $('#measurements-table').DataTable({
+        responsive: true,
+        scrollX: true
+    });
+    $('#garment-measurement-table').DataTable({
+        responsive: true,
+        scrollX: true
+    });
 });
+

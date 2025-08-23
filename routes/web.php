@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\RelationController;
 use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
@@ -58,4 +59,14 @@ Route::delete('/masters/measurement/{id}', [MasterController::class, 'destroyMea
     Route::put('/masters/update-measurement/{id}', [MasterController::class, 'updateMeasurements'])
         ->name('dashboard.masters.updateMeasurements');
 });
+
+//  Garment and Measurement relation routes
+Route::prefix('dashboard/masters')->group(function () {
+    Route::get('/relations', [RelationController::class, 'index'])->name('dashboard.masters.relations');
+    Route::post('/relations', [RelationController::class, 'store'])->name('dashboard.masters.relations.store');
+    Route::get('relations/view', [RelationController::class, 'view'])->name('dashboard.masters.relations.view');   
+    Route::put('/relations/{id}', [RelationController::class, 'update'])->name('dashboard.masters.relations.update');
+    Route::delete('/relations/{id}', [RelationController::class, 'destroy'])->name('dashboard.masters.relations.destroy');
+});
+
 require __DIR__.'/auth.php';

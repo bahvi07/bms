@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (form.checkValidity()) {
                 submitBtn.innerHTML = '<span class="loading loading-spinner"></span> Importing...';
-                let url = `/dashboard/masters/import`;
+                let url = `/dashboard/masters/import-garments`;
 
                 try {
                     const response = await fetch(url, {

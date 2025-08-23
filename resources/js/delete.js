@@ -15,7 +15,7 @@ export async function deleteGarment(id) {
   if (!confirmResult.isConfirmed) return;
 
   try {
-   const url = `/dashboard/masters/measurement/${id}`;
+   const url = `/dashboard/masters/${id}`;
 
     const fd = new FormData();
     fd.append('_method', 'DELETE');

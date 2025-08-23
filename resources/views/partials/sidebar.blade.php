@@ -124,7 +124,7 @@
            <span>Measurements</span>
         </a>
 
-        <a href="#" class="flex items-center py-2 rounded hover:bg-gray-100 text-black">
+        <a href="{{route('dashboard.masters.relations')}}" class="flex items-center py-2 rounded hover:bg-gray-100  {{ request()->routeIs('dashboard.masters.relations') ? 'text-green-600 font-semibold' : 'text-black' }}">
             <i class="ti ti-hierarchy-2 mr-2"></i>
             <span>Relation</span>
         </a>

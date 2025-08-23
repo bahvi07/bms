@@ -29,8 +29,8 @@
     {{-- Table --}}
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6 p-2">
     {{-- Table --}}
-    <table id="garments-table" class="table table-striped bg-white table-bordered w-full">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+    <table id="garments-table" class="table table-striped bg-white  table-bordered w-full">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50" >
             <tr class="text-center bg-gray-800 text-white">
                 <th class="px-6 py-3">S.No.</th>
                 <th class="px-6 py-3">Garment</th>
@@ -41,7 +41,7 @@
         <tbody>
             @foreach($garments as $garment)
             <tr id="row-{{ $garment->id }}" class="bg-white border-b text-center">
-                <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                <td class="px-6 py-4 col-iteration">{{ $loop->iteration }}</td>
                 <td class="px-6 py-4 col-name">{{ $garment->name }}</td>
                 <td class="px-6 py-4 col-description">{{ $garment->description }}</td>
                 <td class="px-6 py-4 text-center">
