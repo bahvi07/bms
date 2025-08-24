@@ -9,17 +9,10 @@ export default defineConfig({
             input: [
                 'resources/js/app.js', 
                 'resources/css/app.css',
-                'resources/css/main.js',
-                 
+                 'resources/css/main.css',
             ],
             refresh: true,
         }),
     ],
-    server: {
-        host: '0.0.0.0',
-        hmr: {
-            host: '192.168.1.20',
-            port: 5173,
-        },
-    },
+    
 });

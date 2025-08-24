@@ -36,4 +36,19 @@ class RelationController extends Controller
         $relations=Relation::all();
         return view('dashboard.masters.relations',compact('relations'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'garment_id' => 'required|exists:garments,id',
+            'measurement_fields' => 'required|array',
+        ]);
+
+        $garment = Garment::findOrFail($request->garment_id);
+
+        // This updates pivot table
+        $garment->measurements()->sync($request->measurement_fields);
+
+        return back()->with('success', 'Relation updated successfully!');
+    }
 }

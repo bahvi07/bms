@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\RelationController;
+use App\Http\Controllers\FabricController;
 use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
@@ -67,6 +68,15 @@ Route::prefix('dashboard/masters')->group(function () {
     Route::get('relations/view', [RelationController::class, 'view'])->name('dashboard.masters.relations.view');   
     Route::put('/relations/{id}', [RelationController::class, 'update'])->name('dashboard.masters.relations.update');
     Route::delete('/relations/{id}', [RelationController::class, 'destroy'])->name('dashboard.masters.relations.destroy');
+});
+
+Route::prefix('dashboard/masters')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/fabrics', [FabricController::class, 'index'])->name('dashboard.masters.fabrics');
+    Route::post('/import-fabrics', [FabricController::class, 'importFabrics'])->name('dashboard.masters.importfabrics');
+    Route::post('/create-fabric', [FabricController::class, 'createFabric'])->name('dashboard.masters.createFabric');
+    Route::post('/store-fabric', [FabricController::class, 'store'])->name('dashboard.masters.storeFabric');
+    Route::put('/update-fabric/{id}', [FabricController::class, 'updateFabric'])->name('dashboard.masters.updateFabric');
+    Route::delete('/delete-fabric/{id}', [FabricController::class, 'destroyFabric'])->name('dashboard.masters.destroyFabric');
 });
 
 require __DIR__.'/auth.php';

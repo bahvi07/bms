@@ -1,6 +1,43 @@
 // resources/js/relations.js
 import { getCsrfToken } from './main';
 
+window.openRelationModal = function (relation = null) {
+  const modal = document.getElementById('relationModal');
+  const form = document.getElementById('relation-form');
+  const idField = document.getElementById('relation_id');
+  const garmentSelect = document.getElementById('garment_id');
+
+  // reset form first
+  form.reset();
+  idField.value = '';
+
+  // Uncheck all measurement checkboxes
+  form.querySelectorAll('input[name="measurement_fields[]"]').forEach(cb => cb.checked = false);
+
+  if (relation) {
+    // ---- Edit Mode ----
+    idField.value = relation.id;
+    garmentSelect.value = relation.id; // garment id
+    document.getElementById('modal-title').innerText = "Edit Relation";
+    document.getElementById('saveBtn').innerText = "Update Relation";
+
+    // Check measurement fields
+    if (relation.measurements) {
+      relation.measurements.forEach(m => {
+        const checkbox = form.querySelector(`input[name="measurement_fields[]"][value="${m.id}"]`);
+        if (checkbox) checkbox.checked = true;
+      });
+    }
+  } else {
+    // ---- Create Mode ----
+    document.getElementById('modal-title').innerText = "Create Relation";
+    document.getElementById('saveBtn').innerText = "Create Relation";
+  }
+
+  modal.showModal();
+};
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const relationForm = document.getElementById('relation-form');
   if (!relationForm) return;

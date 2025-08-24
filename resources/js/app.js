@@ -19,6 +19,7 @@ import './importExcel.js';
 import './garments.js';
 import './delete.js';
 import './measurements.js';
+import './fabric.js';
 import './relations.js';
 import './modals.js';
 // Alpine setup
@@ -33,16 +34,13 @@ window.Swal = Swal;
 document.addEventListener("DOMContentLoaded", function () {
     $('#garments-table').DataTable({
         responsive: true,
-        scrollX: true
     });
 
     $('#measurements-table').DataTable({
         responsive: true,
-        scrollX: true
     });
     $('#garment-measurement-table').DataTable({
         responsive: true,
-        scrollX: true
     });
 });
 

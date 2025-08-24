@@ -44,6 +44,6 @@ footer {
 #devliery-date,
 #set-priority,
 #garment-name,
-#description,#measurement-label,#unit,#garment_id,#measurement-fields{
+#description,#measurement-label,#unit,#garment_id,#measurement-fields,#fabric-name{
     background-color: var(--bg-color);
 }

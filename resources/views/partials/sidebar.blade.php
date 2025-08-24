@@ -129,7 +129,7 @@
             <span>Relation</span>
         </a>
 
-        <a href="#" class="flex items-center py-2 rounded hover:bg-gray-100 text-black">
+        <a href="{{route('dashboard.masters.fabrics')}}" class="flex items-center py-2 rounded hover:bg-gray-100  {{ request()->routeIs('dashboard.masters.fabrics') ? 'text-green-600 font-semibold' : 'text-black' }}">
             <i class="ti ti-brand-databricks mr-2"></i>
             <span>Fabric</span>
         </a>

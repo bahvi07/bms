@@ -63,3 +63,32 @@ export function measurementEditModal(measurement) {
 // make them available globally
 window.openMeasurementModal = openMeasurementModal;
 window.measurementEditModal= measurementEditModal;
+
+// febric Modal
+export function openFabricModal() {
+  const modal = document.getElementById('my_modal_1');
+  if (!modal) return;
+
+  document.getElementById('modal-title').innerText = '➕ Add New Fabric';
+  document.getElementById('modal-subtitle').innerText = 'Fill in the details below.';
+
+  const form = document.getElementById('fabricForm');
+  if (form) form.reset();
+
+  document.getElementById('fabric-id').value = '';
+  modal.showModal?.();
+}
+export function fabricEditModal(fabric) {
+  const modal = document.getElementById('my_modal_1');
+  if (!modal) return;
+
+  document.getElementById('modal-title').innerText = '✏️ Edit Fabric';
+  document.getElementById('modal-subtitle').innerText = 'Update the Fabric details below.';
+
+  document.getElementById('fabric-id').value = fabric.id ?? '';
+  document.getElementById('fabric-name').value = fabric.fabric ?? '';
+  document.getElementById('description').value = fabric.description ?? '';
+  modal.showModal?.();
+}
+window.openFabricModal = openFabricModal;
+window.fabricEditModal= fabricEditModal;

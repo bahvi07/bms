@@ -38,10 +38,10 @@
                 @endif
             </td>
             <td class="px-6 py-4 text-center">
-                <button onclick='openEditModal(@json($garment))'
-                    class="text-white btn bg-green-500 hover:bg-green-600 rounded-lg px-5 border-none">
-                    <i class="ti ti-edit"></i>
-                </button>
+                <button onclick='openRelationModal(@json($garment))'
+    class="text-white btn bg-green-500 hover:bg-green-600 rounded-lg px-5 border-none">
+    <i class="ti ti-edit"></i>
+</button>
                 <button onclick="deleteGarment({{ $garment->id }})"
                     class="text-white btn bg-red-500 hover:bg-red-700 rounded-lg px-5 ml-2 border-none">
                     <i class="ti ti-trash"></i>
@@ -81,6 +81,7 @@
       @if(isset($relation))
           @method('PUT')
       @endif
+<input type="hidden" name="id" id="relation_id">
 
       <!-- Garment Dropdown -->
       <div>
