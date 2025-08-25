@@ -22,6 +22,8 @@ import './measurements.js';
 import './fabric.js';
 import './relations.js';
 import './modals.js';
+import './item-card.js';
+import './fetch-garment.js';
 // Alpine setup
 Alpine.plugin(collapse);
 window.Alpine = Alpine;
@@ -40,6 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
         responsive: true,
     });
     $('#garment-measurement-table').DataTable({
+        responsive: true,
+    });
+    $('#fabric-table').DataTable({
         responsive: true,
     });
 });

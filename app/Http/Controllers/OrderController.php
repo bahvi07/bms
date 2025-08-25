@@ -11,7 +11,9 @@ class OrderController extends Controller
         return view('dashboard.orders.index');
     }
     public function create(){
-        return view('dashboard.orders.create');
+        $garments = \App\Models\Garment::all();
+        $fabrics = \App\Models\Fabric::all();
+        return view('dashboard.orders.create',compact('garments','fabrics'));
     }
     public function store(Request $request){
         // Handle order creation logic here

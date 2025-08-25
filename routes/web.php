@@ -68,6 +68,7 @@ Route::prefix('dashboard/masters')->group(function () {
     Route::get('relations/view', [RelationController::class, 'view'])->name('dashboard.masters.relations.view');   
     Route::put('/relations/{id}', [RelationController::class, 'update'])->name('dashboard.masters.relations.update');
     Route::delete('/relations/{id}', [RelationController::class, 'destroy'])->name('dashboard.masters.relations.destroy');
+    Route::get('/relations/{id}/measurements',[RelationController::class,'getMeasurements'])->name('dashboard.masters.getMeasurements');
 });
 
 Route::prefix('dashboard/masters')->middleware(['auth', 'verified'])->group(function () {

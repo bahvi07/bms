@@ -51,4 +51,12 @@ class RelationController extends Controller
 
         return back()->with('success', 'Relation updated successfully!');
     }
+
+public function getMeasurements($id)
+{
+    $garment = Garment::with('measurements')->findOrFail($id);
+
+    return response()->json($garment->measurements);
+}
+
 }

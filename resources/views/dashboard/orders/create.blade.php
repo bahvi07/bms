@@ -27,9 +27,9 @@
 
    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6 ">  
     <!-- Left Section (8/12)  -->
-    {{-- {{ route('orders.store') }} --}}
+{{-- Cusomter-info --}}
     <div class="lg:col-span-8 rounded-lg ">
-  <form action="" method="POST" class="lg:col-span-8 bg-white p-6 rounded-lg shadow mb-4" id="order-form">
+  <form action="" method="POST" class="lg:col-span-8 bg-white p-6 rounded-lg shadow mb-4" id="customer-info">
     @csrf
     <!-- Card Header -->
     <h2 class="text-lg font-semibold mb-4 flex items-center">
@@ -68,9 +68,9 @@
     </div>
 </form>
 
-
+{{-- Order-form --}}
      <div class="lg:col-span-8 bg-white mt-3 rounded-lg shadow mb-6 mt-6">
-       <form action="" method="post" class="lg:col-span-8 p-6 rounded-lg" id="measurement-form">
+       <form action="" method="post" class="lg:col-span-8 p-6 rounded-lg" id="order-form" enctype="multipart/form-data">
 @csrf
 {{-- Card Header --}}
       <div class="flex items-center justify-between mb-2">
@@ -78,143 +78,82 @@
         <i class="ti ti-scissors mr-2 text-gray-600"></i>
         Order Items
     </h2>
-    <button 
-        class="bg-indigo-600 text-white px-4 py-1 rounded-md shadow hover:bg-indigo-700 transition"
-        type="button">
-        Add  <i class="ti ti-plus mr-2"></i>
-    </button>
+   <button 
+    type="button"
+    id="add-item-btn"
+    class="bg-indigo-600 text-white px-4 py-1 rounded-md shadow hover:bg-indigo-700 transition">
+    Add <i class="ti ti-plus mr-2"></i>
+</button>
+
 </div>
 
-     <h4 class="text-sm font-semibold mb-2">Item 1</h4>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-    <div>
-        <label for="garment" class="block text-sm font-medium text-gray-700 mb-2">
-            Garment Type*
-        </label>
-        <select 
-            id="garment-type"
-            class="w-full border-none py-1 px-3 rounded-md pr-8 bg-white 
-                   focus:outline-none focus:ring focus:border-blue-400"
-        >
-            <option value="All" disabled selected>Select....</option>
-            <option value="Urgent">Lehnga</option>
-            <option value="Medium">Kurta</option>
-            <option value="Low">Jacket</option>
-        </select>
-    </div>
+    <div id="items-container">
+{{-- Item Template (hidden) --}}
+<div class="order-item border border-gray-200 p-4 rounded-lg mb-4 hidden" id="order-item-template">
+    <h4 class="text-sm font-semibold mb-2">Item <span class="item-number">1</span></h4>
 
-    <div>
-        <label for="fabric" class="block text-sm font-medium text-gray-700 mb-2">
-            Fabric*
-        </label>
-        <select 
-            id="fabric-type"
-            class="w-full border-none py-1 px-3 rounded-md pr-8 bg-white 
-                   focus:outline-none focus:ring focus:border-blue-400"
-        >
-            <option value="All" disabled selected>Select....</option>
-            <option value="Urgent">XXXXX</option>
-            <option value="Medium">YYYYY</option>
-            <option value="Low">ZZZZZ</option>
-        </select>
-    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Garment Type*</label>
+            <select name="garments[]" class="garment-type w-full border-gray-300 rounded-md p-2" id="garment-type">
+                <option disabled selected>Select...</option>
+                @foreach ($garments as $garment)
+                    <option value="{{ $garment->id }}">{{ $garment->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-    <div>
-        <label for="color" class="block text-sm font-medium text-gray-700 mb-2">
-            Color
-        </label>
-        <input type="text" id="color" name="color"
-                   placeholder="Enter color"
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-1.5">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Fabric*</label>
+            <select name="fabrics[]" class="fabric-type w-full border-gray-300 rounded-md p-2">
+                <option disabled selected>Select...</option>
+                @foreach ($fabrics as $fabric)
+                    <option value="{{ $fabric->id }}">{{ $fabric->fabric }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Color</label>
+            <input type="text" name="colors[]" placeholder="Enter color" class="w-full border-gray-300 rounded-md p-2" id="color">
+        </div>
     </div>
-</div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-             <label for="qty" class="block text-sm font-medium text-gray-700">Quantity*</label>
-            <input type="text" id="item-qty" name="itm_qty"
-                   placeholder="1"
-                   required
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Quantity*</label>
+            <input type="text" name="qty[]" class="w-full border-gray-300 rounded-md p-2 qty" placeholder="1" required>
         </div>
-            <div>
-             <label for="price" class="block text-sm font-medium text-gray-700">Unit Price*</label>
-            <input type="text" id="unit-price" name="unit_price"
-                   placeholder="1"
-                   required
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Unit Price*</label>
+            <input type="text" name="unit_price[]" class="w-full border-gray-300 rounded-md p-2 un" placeholder="1.00" required>
         </div>
     </div>
-     <h2 class="text-lg font-semibold mb-2 flex items-center">
+ <h2 class="text-lg font-semibold mb-2 flex items-center">
         <i class="ti ti-ruler-measure mr-2 text-gray-600"></i>
     Measurements (inches)
     </h2>
     {{-- DYNAMIC MEASURMENT FILEDS --}}
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 measurement-fields">
         
-        {{-- Fields goes here --}}
-         <div>
-             <label for="chest" class="block text-sm font-medium text-gray-700">Chest*</label>
-            <input type="text" id="chest" name="chest"
-                   placeholder="1"
-                   required
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
-        </div>
-         <div>
-             <label for="waist" class="block text-sm font-medium text-gray-700">Waist*</label>
-            <input type="text" id="waist" name="waist"
-                   placeholder="1"
-                   required
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
-        </div>
-         <div>
-             <label for="hips" class="block text-sm font-medium text-gray-700">Hips*</label>
-            <input type="text" id="hips" name="hips"
-                   placeholder="1"
-                   required
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
-        </div>
-         <div>
-             <label for="shoulder" class="block text-sm font-medium text-gray-700">Shoulder Width*</label>
-            <input type="text" id="shoulder-width" name="shoulder_width"
-                   placeholder="1"
-                   required
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
-        </div>
-        <div>
-             <label for="arm" class="block text-sm font-medium text-gray-700">Arm Length*</label>
-            <input type="text" id="arm-length" name="arm-length"
-                   placeholder="1"
-                   required
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
-        </div>
-        <div>
-             <label for="neck" class="block text-sm font-medium text-gray-700">Neck Size*</label>
-            <input type="text" id="neck_size" name="neck_size"
-                   placeholder="1"
-                   required
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
-        </div>
-        <div>
-             <label for="length" class="block text-sm font-medium text-gray-700">Length*</label>
-            <input type="text" id="length" name="length"
-                   placeholder="1"
-                   required
-                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
-        </div>
     </div>
-    <div class="mt-4">
-        <p  class=""> Special Instruction*</p>
-        <textarea id="instruction" name="instruction"
-                  placeholder="Any additional notes or instructions"
-                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2"></textarea>
-      
+    <div class="mt-2">
+        <label class="block text-sm font-medium text-gray-700">Special Instruction*</label>
+        <textarea name="instruction[]" class="w-full border-gray-300 rounded-md p-2" id="instruction"></textarea>
     </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 media-fields">
+
+    </div>
+</div>
+
+</div>
+
      </form>
     </div>
     
+    {{-- Order Details --}}
     <div class="lg:col-span-4 bg-white p-6 rounded-lg shadow">
-       <form action="" method="POST" class="lg:col-span-8 bg-white rounded-lg mb-4" id="order-form">
+       <form action="" method="POST" class="lg:col-span-8 bg-white rounded-lg mb-4" id="order-details">
     @csrf
 
     <!-- Card Header -->
@@ -261,17 +200,67 @@
 </div>
 <!-- Right Section (4/12) -->
 <div class="lg:col-span-4 bg-white p-6 rounded-lg shadow h-fit">
-    <h2 class="text-xl font-medium mb-4">
-        <i class="ti ti-clipboard-list"></i>
-        Order Summary</h2>
-    <div class="h-80"> 
-<button class="bg-green-400 hover:bg-green-600 p-2 rounded-lg text-white" type="button">
-<i class="ti ti-list"></i>
-    Create Order
-</button>
-<button class="bg-gray-100 p-2 rounded-lg font-medium" type="button">Cancel </button>
+  <!-- Title -->
+  <h2 class="text-lg font-semibold mb-4 flex items-center">
+    <i class="ti ti-clipboard-list mr-2"></i>
+    Order Summary
+  </h2>
+
+  <!-- Summary content -->
+  <div class="space-y-2 text-sm">
+    <div class="flex justify-between">
+      <span class="text-gray-600">Items:</span>
+      <span class="font-medium item-num">2</span>
     </div>
+
+    <div class="flex justify-between">
+      <span class="text-gray-600">Subtotal:</span>
+      <span class="font-medium">₹0.00</span>
+    </div>
+
+    <hr class="my-2">
+
+    <div class="flex justify-between text-base font-semibold">
+      <span>Total Amount:</span>
+      <span>₹0.00</span>
+    </div>
+   <hr class="my-2">
+    <!-- Advance amount input -->
+    <div class="mt-3">
+      <label class="block text-gray-700 text-sm mb-1">Advance Amount (₹)</label>
+      <input type="text" 
+             value="0"
+             class="w-full border rounded-md p-2 text-sm focus:ring focus:ring-indigo-200 focus:border-indigo-500">
+    </div>
+
+    <div class="flex justify-between mt-2">
+      <span class="text-gray-600">Advance Paid:</span>
+      <span class="font-medium">₹0.00</span>
+    </div>
+
+    <div class="flex justify-between mt-2">
+      <span class="text-green-600">Remaining:</span>
+      <span class="text-green-600 font-medium">₹0.00</span>
+    </div>
+  </div>
+   <hr class="my-2">
+  <!-- Buttons -->
+  <div class="grid grid-cols-1 gap-3 mt-6">
+    <button 
+      class="bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg flex justify-center items-center gap-2 font-medium transition"
+      type="button">
+      <i class="ti ti-list"></i>
+      Create order
+    </button>
+
+    <button 
+      class="bg-gray-100 hover:bg-gray-200 py-2 rounded-lg font-medium transition"
+      type="button">
+      Cancel
+    </button>
+  </div>
 </div>
+
 
 </div>
 </div>

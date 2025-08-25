@@ -28,11 +28,9 @@ footer {
     background-color:white;
 }
 
-#search-order,#priority-filter,#clear-filters,#order-form input,#garment-type,
+#search-order,#priority-filter,#clear-filters,#customer-info input,#garment-type,
 #fabric-type,
 #color,
-#item-qty,
-#unit-price,
 #instruction,
 #chest,
 #waist,
@@ -44,6 +42,9 @@ footer {
 #devliery-date,
 #set-priority,
 #garment-name,
-#description,#measurement-label,#unit,#garment_id,#measurement-fields,#fabric-name{
+#description,#measurement-label,#unit,#garment_id,#fabric-name{
+    background-color: var(--bg-color);
+}
+.m-f,.fabric-type,.qty,.un{
     background-color: var(--bg-color);
 }

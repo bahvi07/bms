@@ -209,4 +209,6 @@ public function updateMeasurements(Request $request, $id)
             'errors'  => $e->errors(),
         ], 422);
     }
-}}
+}
+
+}
