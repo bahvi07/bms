@@ -24,6 +24,7 @@ import './relations.js';
 import './modals.js';
 import './item-card.js';
 import './fetch-garment.js';
+import './audio.js';
 // Alpine setup
 Alpine.plugin(collapse);
 window.Alpine = Alpine;
@@ -48,4 +49,3 @@ document.addEventListener("DOMContentLoaded", function () {
         responsive: true,
     });
 });
-

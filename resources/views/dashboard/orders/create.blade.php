@@ -141,9 +141,66 @@
         <label class="block text-sm font-medium text-gray-700">Special Instruction*</label>
         <textarea name="instruction[]" class="w-full border-gray-300 rounded-md p-2" id="instruction"></textarea>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 media-fields">
 
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 mt-4 media-fields">
+    <!-- Upload Files (Photo / Documents) -->
+  <div class="extraOutline p-4 bg-white rounded-lg shadow text-center">
+    <label class="form-label required-field block mb-3 text-gray-700 font-medium">Upload Photo</label>
+    
+    <div class="relative border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-indigo-400 transition cursor-pointer">
+        <input type="file" 
+               class="absolute inset-0 opacity-0 cursor-pointer file-upload-input" 
+               accept="image/*" 
+               required 
+               name="photo">
+
+        <div class="flex flex-col items-center justify-center pointer-events-none">
+            <i class="fas fa-camera text-indigo-500 text-3xl mb-2"></i>
+            <p class="text-gray-600 text-sm mb-1">Click or drag to upload photo</p>
+            <small class="text-gray-400">(Max 2MB, JPG/PNG)</small>
+        </div>
     </div>
+
+    <!-- File Name Preview -->
+    <span class="file-name text-indigo-600 mt-3 block text-sm font-medium hidden"></span>
+</div>
+
+
+<!-- Audio Recording Component -->
+<div x-data="audioRecorder()" class="bg-white p-4 rounded-lg shadow">
+    <div class="flex items-center space-x-4">
+        <!-- Record Button -->
+        <button 
+            @click="toggleRecording()"
+            :class="isRecording ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'"
+            class="px-4 py-2 text-white rounded-lg transition-colors"
+        >
+            <span x-show="!isRecording">🎤 Start Recording</span>
+            <span x-show="isRecording">⏹️ Stop Recording</span>
+        </button>
+
+        <!-- Recording Status -->
+        <div x-show="isRecording" class="flex items-center text-red-500">
+            <div class="animate-pulse w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+            <span x-text="formatTime(recordingTime)"></span>
+        </div>
+    </div>
+
+    <!-- Audio Preview -->
+    <div x-show="audioBlob" class="mt-4">
+        <audio :src="audioUrl" controls class="w-full"></audio>
+        <div class="flex space-x-2 mt-2">
+            <button @click="playAudio()" class="px-3 py-1 bg-green-500 text-white rounded">
+                Play
+            </button>
+            <button @click="deleteRecording()" class="px-3 py-1 bg-red-500 text-white rounded">
+                Delete
+            </button>
+        </div>
+    </div>
+</div>
+
+</div>
 </div>
 
 </div>

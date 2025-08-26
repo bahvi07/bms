@@ -21,4 +21,17 @@ let itemCount = 0;
 
     // Add first item automatically
     addBtn.click();
+    
+document.querySelectorAll(".file-upload-input").forEach(input => {
+        input.addEventListener("change", function () {
+            const fileNameSpan = this.closest(".extraOutline").querySelector(".file-name");
+            if (this.files.length > 0) {
+                fileNameSpan.textContent = this.files[0].name;
+                fileNameSpan.classList.remove("hidden");
+            } else {
+                fileNameSpan.textContent = "";
+                fileNameSpan.classList.add("hidden");
+            }
+        });
+    });
 });
