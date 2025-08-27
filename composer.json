@@ -12,9 +12,10 @@
         "php": "^8.2",
         "components/jquery": "^3.7",
         "laravel/breeze": "^2.3",
-        "laravel/framework": "^12.0",
+        "laravel/framework": "^12.26",
         "laravel/tinker": "^2.10.1",
-        "maatwebsite/excel": "^3.1"
+        "maatwebsite/excel": "^3.1",
+        "spatie/laravel-permission": "^6.21"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

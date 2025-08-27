@@ -12,6 +12,15 @@
 
             <!-- Title -->
             <div class="text-2xl font-bold mb-6 text-center mt-12">Login</div>
+@if ($errors->any())
+    <div class="p-4 mb-4 text-sm text-red-800 bg-white rounded-lg bg-red-50 dark:text-red-400" role="alert">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf

@@ -66,8 +66,10 @@
           <svg :class="{'rotate-90': openDropdown==='staff'}" class="ml-auto h-4 w-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <div x-show="openDropdown==='staff'" class="pl-8 space-y-1" x-cloak>
-          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-user-plus mr-2"></i>Add New Staff</a>
-          <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-users mr-2"></i>Staff List</a>
+          <a href="{{route('dashboard.staff')}}" class="block py-1 hover:text-green-700
+           {{ request()->routeIs('dashboard.staff') ? 'text-green-600 font-semibold' : 'text-black' }}"><i class="ti ti-users mr-2"></i>Staff List</a>
+          <a href="{{route('dashboard.staff.create')}}" class="block py-1 hover:text-green-700
+          {{request()->routeIs('dashboard.staff.create')?'text-green-600 font-semibold':'text-black'}}"><i class="ti ti-user-plus mr-2"></i>Add new Staff</a>
           <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-currency-rupee mr-2"></i>Salary Management</a>
         </div>
       </div>

@@ -6,7 +6,7 @@ use App\Http\Controllers\MasterController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\FabricController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\StaffController;
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -80,4 +80,8 @@ Route::prefix('dashboard/masters')->middleware(['auth', 'verified'])->group(func
     Route::delete('/delete-fabric/{id}', [FabricController::class, 'destroyFabric'])->name('dashboard.masters.destroyFabric');
 });
 
+Route::prefix('dashboard/staff')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [StaffController::class, 'index'])->name('dashboard.staff');
+    Route::get('/create', [StaffController::class, 'create'])->name('dashboard.staff.create');
+});
 require __DIR__.'/auth.php';
