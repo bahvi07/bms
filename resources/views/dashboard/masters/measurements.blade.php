@@ -11,17 +11,17 @@
 
 <div class="flex items-center gap-3">
         <button type="submit" id="importMeasurementBtn" 
-    class="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md flex items-center">
+    class="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md flex items-center border-none">
     <i class="ti ti-download mr-2"></i> Import Excel
 </button>
 
 
         <button onclick="openMeasurementModal()"
-            class="btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md hidden sm:flex items-center">
+            class="btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md hidden sm:flex items-center border-none">
             <i class="ti ti-plus mr-2"></i> Add new Measurement
         </button>
         <button onclick="openMeasurementModal()" 
-            class="btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md sm:hidden">
+            class="btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md sm:hidden border-none">
             <i class="ti ti-plus"></i>
         </button>
     </div>   
@@ -82,23 +82,23 @@
                 <div>
                     <label for="garment-name" class="block text-sm font-medium">Measurement Label</label>
                     <input id="measurement-label" name="label" type="text" placeholder="e.g., Formal Shirt"
-                        class="input input-bordered w-full rounded-lg focus:ring-2 focus:ring-green-400">
+                        class="input input-bordered w-full bg-white rounded-xl focus:ring-2 focus:ring-green-400">
                 </div>
 
                 <div>
                     <label for="description" class="block text-sm font-medium">Description</label>
                     <textarea id="description" name="description" rows="4"
-                        class="textarea textarea-bordered w-full rounded-lg focus:ring-2 focus:ring-green-400"></textarea>
+                        class="textarea textarea-bordered w-full bg-white rounded-xl focus:ring-2 focus:ring-green-400"></textarea>
                 </div>
     <div>
                     <label for="unit" class="block text-sm font-medium">Unit</label>
                     <input id="unit" name="unit" type="text" placeholder="" value="inches"
-                        class="input input-bordered w-full rounded-lg focus:ring-2 focus:ring-green-400" readonly>
+                        class="input input-bordered w-full bg-white rounded-xl focus:ring-2 focus:ring-green-400" readonly>
                 </div>
                 <div class="flex justify-end gap-3 pt-4 border-t">
                     <button type="button" onclick="document.getElementById('my_modal_1').close()" 
-                        class="btn bg-red-500 text-white hover:bg-red-600">Cancel</button>
-                    <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-700">Save</button>
+                        class="btn bg-red-500 text-white hover:bg-red-600 border-none">Cancel</button>
+                    <button type="submit" class="btn bg-green-400 text-white hover:bg-green-600 border-none">Save</button>
                 </div>
             </form>
         </div>  
@@ -113,13 +113,13 @@
         <form id="importMeasurementForm" enctype="multipart/form-data">
             @csrf
             <input type="file" name="file" accept=".xlsx, .xls, .csv" required
-                class="file-input file-input-bordered w-full max-w-xs mb-4 bg-gray-100">
+                class="file-input file-input-bordered w-full max-w-xs bg-white mb-4 shadow">
 
             <div class="flex justify-end gap-3 pt-4 border-t">
                 <button type="button" onclick="document.getElementById('importMeasurementModal').close()" 
-                    class="btn bg-red-500 text-white hover:bg-red-600">Cancel</button>
+                    class="btn bg-red-500 text-white hover:bg-red-600 border-none">Cancel</button>
                 <button type="submit" id="importMeasurementSubmitBtn" 
-                    class="btn bg-indigo-600 text-white hover:bg-indigo-700">Import</button>
+                    class="btn bg-green-400 text-white hover:bg-green-600 border-none">Import</button>
             </div>
         </form>
     </div>

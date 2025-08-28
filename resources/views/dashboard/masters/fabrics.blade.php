@@ -10,17 +10,17 @@
 
 <div class="flex items-center gap-3">
         <button type="submit" id="importFabricBtn" 
-    class="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md flex items-center">
+    class="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md flex items-center border-none">
     <i class="ti ti-download mr-2"></i> Import Excel
 </button>
 
 
         <button onclick="openFabricModal()"
-            class="btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md hidden sm:flex items-center">
+            class="btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md hidden sm:flex items-center border-none">
             <i class="ti ti-plus mr-2"></i> Add new fabric
         </button>
         <button onclick="openFabricModal()" 
-            class="btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md sm:hidden">
+            class="btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md sm:hidden border-none">
             <i class="ti ti-plus"></i>
         </button>
     </div>   
@@ -74,20 +74,20 @@
 
                 <div>
                     <label for="fabric-name" class="block text-sm font-medium">Fabric Name</label>
-                    <input id="fabric-name" name="fabric" type="text" placeholder="e.g., Formal Shirt"
-                        class="input input-bordered w-full rounded-lg focus:ring-2 focus:ring-green-400">
+                    <input id="fabric-name" name="fabric" type="text" placeholder="e.g., Cotton"
+                        class="input input-bordered w-full rounded-xl bg-white focus:ring-2 focus:ring-green-400">
                 </div>
 
                 <div>
                     <label for="description" class="block text-sm font-medium">Description</label>
                     <textarea id="description" name="description" rows="4"
-                        class="textarea textarea-bordered w-full rounded-lg focus:ring-2 focus:ring-green-400"></textarea>
+                        class="textarea textarea-bordered w-full bg-white rounded-xl focus:ring-2 focus:ring-green-400"></textarea>
                 </div>
 
                 <div class="flex justify-end gap-3 pt-4 border-t">
                     <button type="button" onclick="document.getElementById('my_modal_1').close()" 
-                        class="btn bg-red-500 text-white hover:bg-red-600">Cancel</button>
-                    <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-700">Save</button>
+                        class="btn bg-red-500 text-white hover:bg-red-600 border-none">Cancel</button>
+                    <button type="submit" class="btn bg-green-400 text-white border-none hover:bg-green-600">Save</button>
                 </div>
             </form>
         </div>
@@ -103,12 +103,12 @@
           <form id="importFabricForm" enctype="multipart/form-data"   >
                 @csrf
                 <input type="file" name="file" accept=".xlsx, .xls, .csv" required
-                    class="file-input file-input-bordered w-full max-w-xs mb-4 bg-gray-100">
+                    class="file-input file-input-bordered w-full max-w-xs mb-4 bg-gray-100 bg-white shadow">
 
                 <div class="flex justify-end gap-3 pt-4 border-t">
                     <button type="button" onclick="document.getElementById('importFabricModal').close()" 
-                        class="btn bg-red-500 text-white hover:bg-red-600">Cancel</button>
-                    <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-700" id="importFabricSubmitBtn">Import</button>
+                        class="btn bg-red-500 text-white hover:bg-red-600 border-none">Cancel</button>
+                    <button type="submit" class="btn bg-green-400 text-white hover:bg-green-600 border-none" id="importFabricSubmitBtn">Import</button>
                 </div>
             </form>
         </div>

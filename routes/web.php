@@ -7,11 +7,12 @@ use App\Http\Controllers\RelationController;
 use App\Http\Controllers\FabricController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\RoleController;
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Dashboard
+// Main Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -71,6 +72,7 @@ Route::prefix('dashboard/masters')->group(function () {
     Route::get('/relations/{id}/measurements',[RelationController::class,'getMeasurements'])->name('dashboard.masters.getMeasurements');
 });
 
+// Fabric routes
 Route::prefix('dashboard/masters')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/fabrics', [FabricController::class, 'index'])->name('dashboard.masters.fabrics');
     Route::post('/import-fabrics', [FabricController::class, 'importFabrics'])->name('dashboard.masters.importfabrics');
@@ -80,8 +82,19 @@ Route::prefix('dashboard/masters')->middleware(['auth', 'verified'])->group(func
     Route::delete('/delete-fabric/{id}', [FabricController::class, 'destroyFabric'])->name('dashboard.masters.destroyFabric');
 });
 
+// Staff routes
 Route::prefix('dashboard/staff')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [StaffController::class, 'index'])->name('dashboard.staff');
     Route::get('/create', [StaffController::class, 'create'])->name('dashboard.staff.create');
 });
+
+// Roles management routes
+Route::prefix('dashboard/roles')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [RoleController::class, 'index'])->name('dashboard.roles');
+    Route::post('/import-roles', [RoleController::class, 'import'])->name('dashboard.roles.import');
+    // Route::post('/roles', [StaffController::class, 'storeRole'])->name('dashboard.roles.store');
+    // Route::put('/roles/{id}', [StaffController::class, 'updateRole'])->name('dashboard.roles.update');
+    // Route::delete('/roles/{id}', [StaffController::class, 'destroyRole'])->name('dashboard.roles.destroy');
+});
+
 require __DIR__.'/auth.php';

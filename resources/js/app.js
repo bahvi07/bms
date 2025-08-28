@@ -25,6 +25,7 @@ import './modals.js';
 import './item-card.js';
 import './fetch-garment.js';
 import './audio.js';
+import './roles.js';
 // Alpine setup
 Alpine.plugin(collapse);
 window.Alpine = Alpine;

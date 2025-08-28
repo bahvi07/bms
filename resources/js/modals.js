@@ -3,7 +3,7 @@ export function openCreateModal() {
   const modal = document.getElementById('my_modal_1');
   if (!modal) return;
 
-  document.getElementById('modal-title').innerText = '➕ Add New Garment';
+  document.getElementById('modal-title').innerText = 'Add New Garment';
   document.getElementById('modal-subtitle').innerText = 'Fill in the details below.';
 
   const form = document.getElementById('garmentForm');
@@ -17,7 +17,7 @@ export function openEditModal(garment) {
   const modal = document.getElementById('my_modal_1');
   if (!modal) return;
 
-  document.getElementById('modal-title').innerText = '✏️ Edit Garment';
+  document.getElementById('modal-title').innerText = 'Edit Garment';
   document.getElementById('modal-subtitle').innerText = 'Update the garment details below.';
 
   document.getElementById('garment-id').value = garment.id ?? '';
@@ -36,7 +36,7 @@ export function openMeasurementModal() {
   const modal = document.getElementById('my_modal_1');
   if (!modal) return;
 
-  document.getElementById('modal-title').innerText = '➕ Add New Measurement field';
+  document.getElementById('modal-title').innerText = 'Add New Measurement field';
   document.getElementById('modal-subtitle').innerText = 'Fill in the details below.';
 
   const form = document.getElementById('measurementForm');
@@ -50,7 +50,7 @@ export function measurementEditModal(measurement) {
   const modal = document.getElementById('my_modal_1');
   if (!modal) return;
 
-  document.getElementById('modal-title').innerText = '✏️ Edit Measurement';
+  document.getElementById('modal-title').innerText = 'Edit Measurement';
   document.getElementById('modal-subtitle').innerText = 'Update the Measurement details below.';
 
   document.getElementById('measurement-id').value = measurement.id ?? '';
@@ -69,7 +69,7 @@ export function openFabricModal() {
   const modal = document.getElementById('my_modal_1');
   if (!modal) return;
 
-  document.getElementById('modal-title').innerText = '➕ Add New Fabric';
+  document.getElementById('modal-title').innerText = 'Add New Fabric';
   document.getElementById('modal-subtitle').innerText = 'Fill in the details below.';
 
   const form = document.getElementById('fabricForm');
@@ -82,7 +82,7 @@ export function fabricEditModal(fabric) {
   const modal = document.getElementById('my_modal_1');
   if (!modal) return;
 
-  document.getElementById('modal-title').innerText = '✏️ Edit Fabric';
+  document.getElementById('modal-title').innerText = 'Edit Fabric';
   document.getElementById('modal-subtitle').innerText = 'Update the Fabric details below.';
 
   document.getElementById('fabric-id').value = fabric.id ?? '';

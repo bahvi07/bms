@@ -35,39 +35,23 @@
               <i class="ti ti-package mr-2 text-6xl text-green-400 "></i>
             <h2 class="text-xl font-medium mb-1">Active Orders</h2>
             <p class="text-3xl font-bold">20</p>
-            <p class="text-right text-xs text-green-400 font-bold">
-            {{-- <i class="ti ti-trending-up text-lg"></i>
-                20%
-             </p> --}}
         </div>
         
         <div class="bg-white p-6 rounded-lg shadow">
                <i class="ti ti-clock-x mr-2 text-6xl text-yellow-400 "></i>
             <h2 class="text-xl font-medium mb-1">Deadlines today</h2>
             <p class="text-3xl font-bold">5</p>
-             <p class="text-right text-xs text-green-400 font-bold">
-            {{-- <i class="ti ti-trending-up text-lg"></i>
-                70%
-             </p> --}}
         </div>
         
         <div class="bg-white p-6 rounded-lg shadow">
                 <i class="ti ti-clipboard-data mr-2 text-6xl text-blue-500 "></i>
             <h2 class="text-xl font-medium mb-4">Pending tasks</h2>
             <p class="text-3xl font-bold">15</p>
-             <p class="text-right text-xs text-green-400 font-bold">
-            {{-- <i class="ti ti-trending-up text-lg"></i>
-                20%
-             </p> --}}
         </div>
              <div class="bg-white p-6 rounded-lg shadow">
                   <i class="ti ti-alert-hexagon mr-2 text-6xl text-red-500 "></i>
             <h2 class="text-xl font-medium mb-4">Low stock alerts</h2>
             <p class="text-3xl font-bold">5</p>
-             <p class="text-right text-xs text-red-400 font-bold">
-            {{-- <i class="ti ti-trending-down text-lg"></i>
-                40%
-             </p> --}}
         </div>
     </div>
 
@@ -78,9 +62,6 @@
         <i class="ti ti-alert-hexagon mr-2 text-6xl text-red-500"></i>
         <h2 class="text-xl font-medium mb-4">Todays Task overview</h2>
         <p class="text-3xl font-bold">Bar chart</p>
-        <p class="text-right text-xs text-red-400 font-bold">
-            {{-- <i class="ti ti-trending-down text-lg"></i> 40% --}}
-        </p>
     </div>
 
     <!-- Right Section (4/12) -->
@@ -88,9 +69,6 @@
         <i class="ti ti-alert-hexagon mr-2 text-6xl text-red-500"></i>
         <h2 class="text-xl font-medium mb-4">Staff Performance</h2>
         <p class="text-3xl font-bold">pie chart</p>
-        <p class="text-right text-xs text-red-400 font-bold">
-            {{-- <i class="ti ti-trending-down text-lg"></i> 40% --}}
-        </p>
     </div>
 
 </div>
@@ -103,17 +81,11 @@
        <i class="ti ti-alert-hexagon mr-2 text-6xl text-red-500"></i>
         <h2 class="text-xl font-medium mb-4">Order status distribtuion</h2>
         <p class="text-3xl font-bold">pie chart</p>
-        <p class="text-right text-xs text-red-400 font-bold">
-            {{-- <i class="ti ti-trending-down text-lg"></i> 40% --}}
-        </p>
     </div>
      <div class="lg:col-span-8 bg-green-200 mt-3 p-6 rounded-lg shadow">
        <i class="ti ti-alert-hexagon mr-2 text-6xl text-red-500"></i>
         <h2 class="text-xl font-medium mb-4">Order status distribtuion</h2>
         <p class="text-3xl font-bold">pie chart</p>
-        <p class="text-right text-xs text-red-400 font-bold">
-            {{-- <i class="ti ti-trending-down text-lg"></i> 40% --}}
-        </p>
     </div>
     </div>
     <!-- Right Section (4/12) -->
@@ -121,9 +93,6 @@
         <i class="ti ti-alert-hexagon mr-2 text-6xl text-red-500"></i>
         <h2 class="text-xl font-medium mb-4">Order status distribtuion</h2>
         <p class="text-3xl font-bold">pie chart</p>
-        <p class="text-right text-xs text-red-400 font-bold">
-            {{-- <i class="ti ti-trending-down text-lg"></i> 40% --}}
-        </p>
     </div>
 
 </div>
@@ -135,9 +104,6 @@
         <i class="ti ti-alert-hexagon mr-2 text-6xl text-red-500"></i>
         <h2 class="text-xl font-medium mb-4">Quick Actions</h2>
         <p class="text-3xl font-bold">Add new order, add inventory, mark attendence, view report</p>
-        <p class="text-right text-xs text-red-400 font-bold">
-            {{-- <i class="ti ti-trending-down text-lg"></i> 40% --}}
-        </p>
     </div>
 
     <!-- Right Section (4/12) -->
@@ -145,9 +111,6 @@
         <i class="ti ti-alert-hexagon mr-2 text-6xl text-red-500"></i>
         <h2 class="text-xl font-medium mb-4">Notifications</h2>
         <p class="text-3xl font-bold">pie chart</p>
-        <p class="text-right text-xs text-red-400 font-bold">
-            {{-- <i class="ti ti-trending-down text-lg"></i> 40% --}}
-        </p>
     </div>
 
 </div>

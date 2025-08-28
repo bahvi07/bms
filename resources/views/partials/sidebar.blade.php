@@ -87,7 +87,7 @@
           <a href="#" class="block py-1 hover:text-green-700"><i class="ti ti-calendar-cog mr-2"></i>Monthly Summary</a>
         </div>
       </div>
-      <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('role') ? 'text-green-600' : 'text-black' }}">
+      <a href="{{route('dashboard.roles')}}" class="flex items-center px-4 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('dashboard.roles*') ? 'text-green-600' : 'text-black' }}">
         <i class="ti ti-settings mr-2 text-xl"></i>
         <span>Role</span>
       </a>

@@ -41,10 +41,12 @@ footer {
 #length,
 #devliery-date,
 #set-priority,
-#garment-name,
-#description,#measurement-label,#unit,#garment_id,#fabric-name{
+.modal-box{
     background-color: var(--bg-color);
 }
 .m-f,.fabric-type,.qty,.un{
     background-color: var(--bg-color);
+}
+p{
+user-select: none;
 }

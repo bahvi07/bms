@@ -87,7 +87,7 @@
       <div>
         <label for="garment_id" class="block text-sm font-medium mb-1">Garment</label>
         <select id="garment_id" name="garment_id" required
-          class="select select-bordered w-full rounded-lg focus:ring-2 focus:ring-green-400">
+          class="select border-none w-full rounded-xl bg-white focus:ring-2 focus:ring-green-400">
           <option disabled {{ !isset($relation) ? 'selected' : '' }}>Select Garment</option>
           @foreach($garments as $garment)
             <option value="{{ $garment->id }}" 
@@ -101,7 +101,7 @@
       <!-- Measurement Checkboxes -->
       <div>
         <label class="block text-sm font-medium mb-2">Measurement Fields</label>
-        <div class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto p-2 border rounded-lg">
+        <div class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto p-2 border rounded-lg bg-white">
           @foreach($measurements as $measurement) 
           <label class="flex items-center space-x-2">
             <input type="checkbox" name="measurement_fields[]" value="{{ $measurement->id }}" 
@@ -118,10 +118,10 @@
       <div class="flex justify-end gap-3 pt-4 border-t">
         <button type="button" 
           onclick="document.getElementById('relationModal').close()" 
-          class="btn bg-red-500 text-white hover:bg-red-600">Cancel</button>
+          class="btn bg-red-500 text-white hover:bg-red-600 border-none">Cancel</button>
 
         <button type="submit" id="saveBtn" 
-          class="btn bg-indigo-600 text-white hover:bg-indigo-700">
+          class="btn bg-green-400 text-white hover:bg-green-600 border-none">
           {{ isset($relation) ? 'Update Relation' : 'Create Relation' }}
         </button>
       </div>
