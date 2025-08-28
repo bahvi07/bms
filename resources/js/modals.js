@@ -92,3 +92,33 @@ export function fabricEditModal(fabric) {
 }
 window.openFabricModal = openFabricModal;
 window.fabricEditModal= fabricEditModal;
+
+// Roles Modal
+export function openRoleModal() {
+const modal = document.getElementById('my_modal_1');
+  if (!modal) return;
+
+  document.getElementById('modal-title').innerText = 'Add New Role';
+  document.getElementById('modal-subtitle').innerText = 'Fill in the details below.';
+
+  const form = document.getElementById('roleForm');
+  if (form) form.reset();
+
+  document.getElementById('role-id').value = '';
+  modal.showModal?.();
+}
+export function roleEditModal(role) {
+    const modal = document.getElementById('my_modal_1');
+    if (!modal) return;
+
+    document.getElementById('modal-title').innerText = 'Edit Role';
+    document.getElementById('modal-subtitle').innerText = 'Update the role details below.';
+
+    document.getElementById('role-id').value = role.id ?? '';
+    document.getElementById('role-title').value = role.role ?? '';
+    document.getElementById('description').value = role.description ?? '';
+    document.getElementById('status').value = role.status ?? '';
+    modal.showModal?.();
+}
+window.openRoleModal = openRoleModal;
+window.roleEditModal = roleEditModal;

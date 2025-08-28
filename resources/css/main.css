@@ -47,6 +47,10 @@ footer {
 .m-f,.fabric-type,.qty,.un{
     background-color: var(--bg-color);
 }
-p{
-user-select: none;
+p,tr,td,th,label,h1,h2,h3,h4,h5,h6,span,a,button{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+}   
+select,option{
+    cursor: pointer;
 }

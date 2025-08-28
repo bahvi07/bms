@@ -119,3 +119,39 @@ export async function deleteFabric(id) {
 }
 
 window.deleteFabric = deleteFabric;
+
+export async function deleteRole(id) {
+const confirmResult = await Swal.fire({
+    title: 'Are you sure?',
+    text: 'This action cannot be undone!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#16a34a',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+  });
+  if (!confirmResult.isConfirmed) return;
+  try {
+    const url = `/dashboard/roles/${id}`;
+    const fd = new FormData();
+    fd.append('_method', 'DELETE');
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 
+        'X-CSRF-TOKEN': getCsrfToken(), 
+        'Accept': 'application/json' 
+      },
+      body: fd,
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || 'Failed to delete role.');
+
+    document.getElementById(`row-${id}`)?.remove();
+    Swal.fire('Deleted!', data.message || 'Role deleted successfully.', 'success');
+  } catch (err) {
+    Swal.fire('Error!', err.message || 'Unexpected error during delete.', 'error');
+  }
+}
+window.deleteRole = deleteRole;

@@ -49,4 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#fabric-table').DataTable({
         responsive: true,
     });
+    $('#roles-table').DataTable({
+        responsive: true,
+    });
 });

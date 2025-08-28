@@ -15,11 +15,11 @@
             <i class="ti ti-download mr-2"></i> Import Excel
         </button>
 
-        <button  onclick="my_modal_1.showModal()"
+        <button  onclick="openRoleModal()"
             class="btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md hidden sm:flex items-center border-none">
             <i class="ti ti-plus mr-2"></i> Add new Role
         </button>
-        <button onclick="my_modal_1.showModal()" 
+        <button onclick="openRoleModal()" 
             class="btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md sm:hidden border-none">
             <i class="ti ti-plus"></i>
         </button>
@@ -30,7 +30,7 @@
         <div class="bg-white p-6 pt-3 rounded-lg shadow">
             <h2 class="text-xl font-medium mb-1">Total Roles</h2>
             <div class="flex items-center justify-between mt-4">
-                <p class="text-2xl font-medium text-gray-600">20</p>
+                <p class="text-2xl font-medium text-gray-600">{{$total}}</p>
                 <i class="ti ti-receipt text-3xl text-gray-600 px-4 py-2 bg-gray-50 rounded-lg"></i>
             </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="bg-white p-6 pt-3 rounded-lg shadow">
             <h2 class="text-xl font-medium mb-1">Active Roles</h2>
             <div class="flex items-center justify-between mt-4">
-                <p class="text-3xl font-medium text-green-400">20</p>
+                <p class="text-3xl font-medium text-green-400">{{$active}}</p>
                 <i class="ti ti-activity text-3xl text-green-400 px-4 py-2 bg-green-50 rounded-lg"></i>
             </div>
         </div>
@@ -65,9 +65,9 @@
 {{-- Table --}}
     <div class="relative overflow-x-auto bg-white shadow-md sm:rounded-lg mt-6 p-2">
     {{-- Table --}}
-    <table id="staff-table" class="table  bg-white table-bordered w-full">
+    <table id="roles-table" class="table  bg-white table-bordered w-full">
         <thead class="text-sm text-gray-900 ">
-            <tr class="text-center  text-dark">
+            <tr class="text-center bg-gray-800 text-white">
                 <th class="px-6 py-3">Role Title</th>
                 <th class="px-6 py-3">Description</th>
                 <th class="px-6 py-3">Assigned Staff</th>
@@ -76,24 +76,34 @@
             </tr>
         </thead>
         <tbody>
-           {{-- @foreach($measurements as $measurement)
-<tr id="row-{{ $measurement->id }}" class="bg-white border-b text-center">
-    <td class="px-6 py-4 col-iteration">{{ $loop->iteration }}</td>
-    <td class="px-6 py-4 col-label">{{ $measurement->label }}</td>
-    <td class="px-6 py-4 col-description">{{ $measurement->description }}</td>
-    <td class="px-6 py-4 col-unit">{{ $measurement->unit }}</td>
+           @foreach($roles as $role)
+<tr id="row-{{ $role->id }}" class="bg-white border-b text-center">
+    <td class="px-6 py-4 col-role">{{ $role->role }}</td>
+    <td class="px-6 py-4 col-description">{{ $role->description }}</td>
+     {{-- <td class="px-6 py-4 col-assigned">{{ $role->assigned }}</td> --}}
+     <td class="px-6 py-4 col-assigned"><i class="ti ti-users">-</i></td>
+   <td class="px-6 py-4 col-status user-select-none">
+    @if($role->status == 1)
+        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Active</span>
+    @else
+        <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-600">Inactive</span>
+    @endif
+</td>
+
     <td class="px-6 py-4 text-center">
-        <button onclick='measurementEditModal(@json($measurement))'
+    <div class="flex items-center justify-center gap-2">
+        <button onclick='roleEditModal(@json($role))'
             class="text-white btn bg-green-500 hover:bg-green-600 rounded-lg px-5 border-none">
             <i class="ti ti-edit"></i>
         </button>
-        <button onclick="deleteMeasurement({{ $measurement->id }})"
-            class="text-white btn bg-red-500 hover:bg-red-700 rounded-lg px-5 ml-2 border-none">
+        <button onclick="deleteRole({{ $role->id }})"
+            class="text-white btn bg-red-500 hover:bg-red-700 rounded-lg px-5 border-none">
             <i class="ti ti-trash"></i>
         </button>
+    </div>
     </td>
 </tr>
-@endforeach --}}
+@endforeach
 
         </tbody>
     </table>
@@ -105,7 +115,8 @@
 {{-- Add & Edit Modal --}}
     <dialog id="my_modal_1" class="modal">
         <div class="modal-box bg-white text-gray-900 rounded-2xl shadow-xl w-full max-w-lg">
-            <h3 id="modal-title" class="text-xl font-semibold text-gray-800 mb-4">Add New Role</h3>
+            <h3 id="modal-title" class="text-xl font-semibold text-gray-800 mb-1">Add New Role</h3>
+            <span id="modal-subtitle" class="text-sm text-gray-500 mb-4 block">Fill in the details below.</span>
             <form id="roleForm" class="space-y-5">
                 @csrf
                 <input type="hidden" id="role-id" name="id">
@@ -114,8 +125,8 @@
                         class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
                 <div>
-                    <label for="role-title" class="block text-sm font-medium">Rolte Title</label>
-                    <input id="role-title" name="role-title" type="text" placeholder="e.g., Stitcher"
+                    <label for="role-title" class="block text-sm font-medium">Role Title</label>
+                    <input id="role-title" name="role" type="text" placeholder="e.g., Stitcher"
                         class="input input-bordered w-full bg-white rounded-xl focus:ring-2 focus:ring-green-400">
                 </div>
 
@@ -124,7 +135,14 @@
                     <textarea id="description" name="description" rows="4"
                         class="textarea textarea-bordered w-full bg-white rounded-xl focus:ring-2 focus:ring-green-400"></textarea>
                 </div>
-
+<div>
+    <label for="status" class="block text-sm font-medium">Status</label>
+    <select id="status" name="status"
+        class="input input-bordered w-full bg-white rounded-xl focus:ring-2 focus:ring-green-400">
+        <option value="1">Active</option>
+        <option value="0">Inactive</option>
+    </select>
+</div>
                 <div class="flex justify-end gap-3 pt-4 border-t">
                     <button type="button" onclick="document.getElementById('my_modal_1').close()" 
                         class="btn bg-red-500 text-white hover:bg-red-600 border-none">Cancel</button>

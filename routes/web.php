@@ -92,9 +92,9 @@ Route::prefix('dashboard/staff')->middleware(['auth', 'verified'])->group(functi
 Route::prefix('dashboard/roles')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [RoleController::class, 'index'])->name('dashboard.roles');
     Route::post('/import-roles', [RoleController::class, 'import'])->name('dashboard.roles.import');
-    // Route::post('/roles', [StaffController::class, 'storeRole'])->name('dashboard.roles.store');
-    // Route::put('/roles/{id}', [StaffController::class, 'updateRole'])->name('dashboard.roles.update');
-    // Route::delete('/roles/{id}', [StaffController::class, 'destroyRole'])->name('dashboard.roles.destroy');
+    Route::post('/create', [RoleController::class, 'store'])->name('dashboard.roles.store');
+    Route::put('/update/{id}', [RoleController::class, 'update'])->name('dashboard.roles.update');
+    Route::delete('/{id}', [RoleController::class, 'destroy'])->name('dashboard.roles.destroy');
 });
 
 require __DIR__.'/auth.php';

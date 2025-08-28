@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('role')->unique();
             $table->text('description')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
