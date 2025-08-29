@@ -5,7 +5,7 @@ import './toggle-password';
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
 import Swal from 'sweetalert2';
-
+import mask from '@alpinejs/mask';
 // jQuery + DataTables
 import $ from 'jquery';
 import DataTable from 'datatables.net';
@@ -26,8 +26,10 @@ import './item-card.js';
 import './fetch-garment.js';
 import './audio.js';
 import './roles.js';
+import './staff.js';
 // Alpine setup
 Alpine.plugin(collapse);
+Alpine.plugin(mask);
 window.Alpine = Alpine;
 Alpine.start();
 

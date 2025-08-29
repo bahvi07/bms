@@ -17,8 +17,9 @@ class RoleController extends Controller
         $roles = StaffRole::all();
         $active=StaffRole::where('status', true)->count();
         $total=StaffRole::count();
+        $assigned=StaffRole::sum('assigned');
         $inactive=$total-$active;
-        return view('dashboard.roles.index',compact('roles','active','total','inactive'));
+        return view('dashboard.roles.index',compact('roles','active','total','inactive','assigned'));
     }
 
     public function store(Request $request){

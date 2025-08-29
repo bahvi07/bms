@@ -8,6 +8,7 @@ use App\Http\Controllers\FabricController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\AttendanceController;
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -95,6 +96,12 @@ Route::prefix('dashboard/roles')->middleware(['auth', 'verified'])->group(functi
     Route::post('/create', [RoleController::class, 'store'])->name('dashboard.roles.store');
     Route::put('/update/{id}', [RoleController::class, 'update'])->name('dashboard.roles.update');
     Route::delete('/{id}', [RoleController::class, 'destroy'])->name('dashboard.roles.destroy');
+});
+
+// Attendence routes
+Route::prefix('dashboard/attendance')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [AttendanceController::class, 'index'])->name('dashboard.attendance');
+    
 });
 
 require __DIR__.'/auth.php';

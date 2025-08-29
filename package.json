@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@alpinejs/collapse": "^3.14.9",
+        "@alpinejs/mask": "^3.14.9",
         "@tabler/icons-webfont": "^3.34.1",
         "@tailwindcss/postcss": "^4.1.12",
         "@tailwindcss/vite": "^4.1.12",

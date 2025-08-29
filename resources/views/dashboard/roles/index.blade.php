@@ -47,15 +47,15 @@
         <div class="bg-white p-6 pt-3 rounded-lg shadow">
             <h2 class="text-xl font-medium mb-1">Assign Staff</h2>
             <div class="flex items-center justify-between mt-4">
-                <p class="text-3xl font-medium text-indigo-400">20</p>
+                <p class="text-3xl font-medium text-indigo-400">{{$assigned}}</p>
                 <i class="ti ti-users text-3xl text-indigo-400 px-4 py-2 bg-indigo-50 rounded-lg"></i>
             </div>
         </div>
         
          <div class="bg-white p-6 pt-3 rounded-lg shadow">
-            <h2 class="text-xl font-medium mb-1">Empty Roles</h2>
+            <h2 class="text-xl font-medium mb-1">Inactive Roles</h2>
             <div class="flex items-center justify-between mt-4 ">
-                <p class="text-3xl font-medium text-red-500">20</p>
+                <p class="text-3xl font-medium text-red-500">{{$inactive}}</p>
                 <i class="ti ti-alert-triangle text-3xl text-red-500 px-4 py-2 bg-red-50 rounded-lg"></i>
             </div>
         </div>
