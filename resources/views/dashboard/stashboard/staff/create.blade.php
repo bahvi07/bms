@@ -25,7 +25,7 @@
     {{-- LEFT: Staff Form (single form) --}}
     <div class="bg-white col-span-3 md:col-span-2 rounded-lg p-4">
       {{-- <CHANGE> Single form handles all fields; enctype enables file uploads --}}
-      <form action="#" method="POST" class="lg:col-span-8 bg-white rounded-lg mb-4" id="staff-info" enctype="multipart/form-data">
+      <form action="#" class="lg:col-span-8 bg-white rounded-lg mb-4" id="staff-info" enctype="multipart/form-data">
         @csrf
         <h2 class="text-lg font-semibold mb-4 flex items-center">
           <i class="ti ti-user mr-2 text-gray-600"></i>
@@ -35,8 +35,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           <div>
-            <label for="member_name" class="block text-sm font-medium text-gray-700">Full Name*</label>
-            <input type="text" id="member_name" name="member_name"
+            <label for="full_name" class="block text-sm font-medium text-gray-700">Full Name*</label>
+            <input type="text" id="full_name" name="full_name"
                    placeholder="Enter full name" required
                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
           </div> 
@@ -49,8 +49,8 @@
 
           {{-- Email --}}
           <div>
-            <label for="member_email" class="block text-sm font-medium text-gray-700">Email (optional)</label>
-            <input type="email" id="member_email" name="member_email"
+            <label for="email" class="block text-sm font-medium text-gray-700">Email (optional)</label>
+            <input type="email" id="email" name="email"
                    placeholder="Enter email address"
                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
           </div>
@@ -69,9 +69,9 @@
           </div>
 
           <div class="md:col-span-2">
-            <label for="address" class="block text-sm font-medium text-gray-700">Address*</label>
+            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
             <input type="text" id="address" name="address"
-                   placeholder="Enter customer address" required
+                   placeholder="Enter staff address"
                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
           </div>
         </div>
@@ -82,28 +82,43 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label for="role" class="block text-sm font-medium text-gray-700">Role*</label>
-            <select name="roles" id="role"
+            <label for="role_id" class="block text-sm font-medium text-gray-700">Role*</label>
+            <select name="role_id" id="role_id"
               class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2" required>
+              <option value="">Select a role</option>
               @foreach ($roles as $role)
                 <option value="{{ $role->id }}">{{ $role->role }}</option>
               @endforeach
             </select>
           </div>
 
+          <div>
+            <label for="salary" class="block text-sm font-medium text-gray-700">Salary (optional)</label>
+            <input type="number" name="salary" id="salary" step="0.01" min="0"
+                   placeholder="Enter salary amount"
+                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
+          </div>
+
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label for="start_time" class="block text-sm font-medium text-gray-700">Shift Start Time*</label>
-              <input type="time" name="start_time" id="start_time"
-                     class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2"
-                     required>
+              <label for="shift_start_time" class="block text-sm font-medium text-gray-700">Shift Start Time</label>
+              <input type="time" name="shift_start_time" id="shift_start_time"
+                     class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
             </div>
             <div>
-              <label for="end_time" class="block text-sm font-medium text-gray-700">Shift End Time*</label>
-              <input type="time" name="end_time" id="end_time"
-                     class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2"
-                     required>
+              <label for="shift_end_time" class="block text-sm font-medium text-gray-700">Shift End Time</label>
+              <input type="time" name="shift_end_time" id="shift_end_time"
+                     class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
             </div>
+          </div>
+
+          <div>
+            <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+            <select name="status" id="status"
+              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
           </div>
         </div>
 
@@ -155,7 +170,7 @@
           <input type="file"
                  class="absolute inset-0 opacity-0 cursor-pointer staff-file-upload-input"
                  accept="image/*"
-                 name="photo"
+                 name="profile_picture"
                  form="staff-info">
           <span class="file-name hidden absolute inset-0 flex items-center justify-center text-base font-medium text-gray-700 bg-gray-50"></span>
           <div class="upload-instructions flex flex-col items-center bg-gray-50 justify-center pointer-events-none">
@@ -181,7 +196,7 @@
           <span class="font-medium">20</span>
         </div>
         <div class="flex justify-between mt-2">
-          <span class="text-gray-600">Active Roles:</span>
+          <span class="font-semibold">Active Roles:</span>
           <span class="font-medium">12</span>
         </div>
         <div class="flex justify-between mt-2">

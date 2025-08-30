@@ -88,6 +88,7 @@ Route::prefix('dashboard/staff')->middleware(['auth', 'verified'])->group(functi
     Route::get('/', [StaffController::class, 'index'])->name('dashboard.staff');
     Route::get('/create', [StaffController::class, 'create'])->name('dashboard.staff.create');
     Route::post('/store', [StaffController::class, 'store'])->name('dashboard.staff.store');
+    
 });
 
 // Roles management routes
