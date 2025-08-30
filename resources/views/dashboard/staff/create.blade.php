@@ -36,7 +36,7 @@
 
           <div>
             <label for="member_name" class="block text-sm font-medium text-gray-700">Full Name*</label>
-            <input type="text" id="member_name" name="member_name"
+            <input type="text" id="full_name" name="full_name"
                    placeholder="Enter full name" required
                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
           </div> 
@@ -50,7 +50,7 @@
           {{-- Email --}}
           <div>
             <label for="member_email" class="block text-sm font-medium text-gray-700">Email (optional)</label>
-            <input type="email" id="member_email" name="member_email"
+            <input type="email" id="email" name="email"
                    placeholder="Enter email address"
                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
           </div>
@@ -83,7 +83,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label for="role" class="block text-sm font-medium text-gray-700">Role*</label>
-            <select name="roles" id="role"
+            <select name="role_id" id="role"
               class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2" required>
               @foreach ($roles as $role)
                 <option value="{{ $role->id }}">{{ $role->role }}</option>
@@ -94,13 +94,13 @@
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label for="start_time" class="block text-sm font-medium text-gray-700">Shift Start Time*</label>
-              <input type="time" name="start_time" id="start_time"
+              <input type="time" name="shift_start_time" id="shift_start_time"
                      class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2"
                      required>
             </div>
             <div>
               <label for="end_time" class="block text-sm font-medium text-gray-700">Shift End Time*</label>
-              <input type="time" name="end_time" id="end_time"
+              <input type="time" name="shift_end_time" id="shift_end_time"
                      class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2"
                      required>
             </div>
@@ -113,7 +113,7 @@
         <div class="relative border-2 border-dashed border-gray-300 rounded-lg hover:border-indigo-400 transition cursor-pointer bg-gray-50 p-6 extraOutline-id">
           <input type="file"
                  class="absolute inset-0 opacity-0 cursor-pointer staff-id-upload-input"
-                 accept="image/*" name="id_proof">
+                 accept="image/*" name="profile_picture">
           <span class="file-name-id hidden absolute inset-0 flex items-center justify-center text-base font-medium text-gray-700 bg-gray-50"></span>
           <div class="upload-instructions-id flex flex-col items-center bg-gray-50 justify-center pointer-events-none">
             <i class="fas fa-download text-indigo-500 text-3xl mb-2"></i>

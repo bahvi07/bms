@@ -5,10 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\StaffRole;
+use Illuminate\Support\Str;
 
 class Staff extends Model
 {
     use HasFactory;
+    
+    public $incrementing = false;
+    protected $keyType = 'string';
+    
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = (string) Str::uuid();
+            }
+        });
+    }
     
     protected $fillable = [
         'full_name',
@@ -28,10 +43,8 @@ class Staff extends Model
     ];
 
     // Model Events to manage assigned count in staff_roles table
-    public static function boot()
+    protected static function booted()
     {
-        parent::boot();
-        
         // When staff member is added, increment assigned count in staff_roles table
         static::created(function($staff) {
             if ($staff->role_id) {
