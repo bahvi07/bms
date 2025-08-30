@@ -101,18 +101,28 @@
             </tr>
         </thead>
         <tbody>
-           {{-- @foreach($measurements as $measurement)
+           {{-- @foreach($staff as $s)
 <tr id="row-{{ $measurement->id }}" class="bg-white border-b text-center">
     <td class="px-6 py-4 col-iteration">{{ $loop->iteration }}</td>
-    <td class="px-6 py-4 col-label">{{ $measurement->label }}</td>
-    <td class="px-6 py-4 col-description">{{ $measurement->description }}</td>
-    <td class="px-6 py-4 col-unit">{{ $measurement->unit }}</td>
-    <td class="px-6 py-4 text-center">
-        <button onclick='measurementEditModal(@json($measurement))'
+    <td class="px-6 py-4 col-full-name">{{ $s->full_name }}</td>
+    <td class="px-6 py-4 col-phone">{{ $s->phone }}</td>
+    <td class="px-6 py-4 col-role">{{ $s->role }}</td>
+      <td class="px-6 py-4 col-shift">{{ $s->shift_start_time }}-{{$s->shift_end_time}}</td>
+      <td class="px-6 py-4 col-salary">{{ $s->salary }}</td>
+       <td class="px-6 py-4 col-status user-select-none">
+    @if($s->status == 1)
+        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Active</span>
+    @else
+        <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-600">Inactive</span>
+    @endif
+</td>
+
+      <td class="px-6 py-4 text-center">
+        <button onclick='measurementEditModal(@json($s))'
             class="text-white btn bg-green-500 hover:bg-green-600 rounded-lg px-5 border-none">
             <i class="ti ti-edit"></i>
         </button>
-        <button onclick="deleteMeasurement({{ $measurement->id }})"
+        <button onclick="deleteMeasurement({{ $s->id }})"
             class="text-white btn bg-red-500 hover:bg-red-700 rounded-lg px-5 ml-2 border-none">
             <i class="ti ti-trash"></i>
         </button>

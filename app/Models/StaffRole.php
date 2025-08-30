@@ -15,7 +15,7 @@ class StaffRole extends Model
 
     // UUID is string
     protected $keyType = 'string';
-
+// Model Events to auto-generate UUID
     // Auto-generate UUID on create
     protected static function boot()
     {

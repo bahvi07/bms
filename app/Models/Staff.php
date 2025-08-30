@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\StaffRole;
 class Staff extends Model
 {
-    
+    // Model Events to manage assigned count in staff_roles table
     public static function boot(){
         parent::boot();
         // When staff member added than increament assigned count in staff_roles table

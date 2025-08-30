@@ -25,7 +25,7 @@
     {{-- LEFT: Staff Form (single form) --}}
     <div class="bg-white col-span-3 md:col-span-2 rounded-lg p-4">
       {{-- <CHANGE> Single form handles all fields; enctype enables file uploads --}}
-      <form action="#" method="POST" class="lg:col-span-8 bg-white rounded-lg mb-4" id="personal-info" enctype="multipart/form-data">
+      <form action="#" class="lg:col-span-8 bg-white rounded-lg mb-4" id="staff-info" enctype="multipart/form-data">
         @csrf
         <h2 class="text-lg font-semibold mb-4 flex items-center">
           <i class="ti ti-user mr-2 text-gray-600"></i>
@@ -123,7 +123,7 @@
         </div>
 
         <div class="bg-white p-4 rounded-lg flex justify-end gap-3 mt-6">
-          <button type="submit" form="personal-info"
+          <button type="submit" id="submit-staff" form="personal-info"
                   class="px-4 py-2 rounded-md bg-indigo-500 hover:bg-indigo-600 text-white flex items-center">
             <i class="ti ti-plus mr-2"></i>
             Add Staff Member
