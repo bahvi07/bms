@@ -123,14 +123,16 @@
 </td>
 
       <td class="px-6 py-4 text-center">
-        <button onclick='measurementEditModal(@json($s))'
+        <button onclick='editStaff(@json($s))'
             class="text-white btn bg-green-500 hover:bg-green-600 rounded-lg px-5 border-none">
             <i class="ti ti-edit"></i>
         </button>
-        <button onclick="deleteStaff({{ $s->id }})"
-            class="text-white btn bg-red-500 hover:bg-red-700 rounded-lg px-5 ml-2 border-none">
-            <i class="ti ti-trash"></i>
-        </button>
+       <button data-id="{{ $s->id }}" 
+        onclick="deleteStaff('{{ $s->id }}')" 
+        class="text-white delete-staff-btn btn bg-red-500 hover:bg-red-700 rounded-lg px-5 ml-2 border-none">
+    <i class="ti ti-trash"></i>
+</button>
+
     </td>
 </tr>
 @endforeach
@@ -141,3 +143,4 @@
 </div>
 </div>
 @endsection
+

@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\SalaryController;
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -88,7 +89,8 @@ Route::prefix('dashboard/staff')->middleware(['auth', 'verified'])->group(functi
     Route::get('/', [StaffController::class, 'index'])->name('dashboard.staff');
     Route::get('/create', [StaffController::class, 'create'])->name('dashboard.staff.create');
     Route::post('/store', [StaffController::class, 'store'])->name('dashboard.staff.store');
-    
+    Route::delete('/delete/{id}', [StaffController::class, 'destroy'])->name('dashboard.staff.destroy');
+   Route::get('/salary', [SalaryController::class, 'index'])->name('dashboard.staff.salary'); 
 });
 
 // Roles management routes
@@ -97,7 +99,7 @@ Route::prefix('dashboard/roles')->middleware(['auth', 'verified'])->group(functi
     Route::post('/import-roles', [RoleController::class, 'import'])->name('dashboard.roles.import');
     Route::post('/create', [RoleController::class, 'store'])->name('dashboard.roles.store');
     Route::put('/update/{id}', [RoleController::class, 'update'])->name('dashboard.roles.update');
-    Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->name('dashboard.roles.destroy');
+    Route::delete('/{id}', [RoleController::class, 'destroy'])->name('dashboard.roles.destroy');
 });
 
 // Attendence routes

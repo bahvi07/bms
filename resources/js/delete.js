@@ -156,7 +156,9 @@ const confirmResult = await Swal.fire({
 }
 window.deleteRole = deleteRole;
 
+// Delete Staff
 export async function deleteStaff(id) {
+  
   const confirmResult = await Swal.fire({
       title: 'Are you sure?',
       text: 'This action cannot be undone!',
@@ -167,8 +169,9 @@ export async function deleteStaff(id) {
       confirmButtonText: 'Yes, delete it!',
     });
     if (!confirmResult.isConfirmed) return;
+    
     try {
-      const url = `/dashboard/staff/delete/${id}`;
+      const url = `/dashboard/staff/delete/${id}/`;
       const fd = new FormData();
       fd.append('_method', 'DELETE');
       const res = await fetch(url, {

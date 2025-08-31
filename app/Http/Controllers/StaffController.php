@@ -96,7 +96,6 @@ class StaffController extends Controller
     {
         $staff = Staff::findOrFail($id);
         $staff->delete();
-        return redirect()->route('staff.index')->with('success', 'Staff member deleted successfully.');
+        return response()->json(['success' => true, 'message' => 'Staff member deleted successfully.']);
     }
-      
 }

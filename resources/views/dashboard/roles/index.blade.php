@@ -11,8 +11,11 @@
     </div>
 
 <div class="flex items-center gap-3">
-        <button type="submit" id="importRoleBtn" class="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md flex items-center border-none">
+        <button type="submit" id="importRoleBtn" class="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md flex items-center border-none hidden sm:flex ">
             <i class="ti ti-download mr-2"></i> Import Excel
+        </button>
+        <button type="submit" id="importRoleBtn" class="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md flex items-center border-none sm:hidden ">
+            <i class="ti ti-download"></i> 
         </button>
 
         <button  onclick="openRoleModal()"
