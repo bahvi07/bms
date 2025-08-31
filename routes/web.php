@@ -97,7 +97,7 @@ Route::prefix('dashboard/roles')->middleware(['auth', 'verified'])->group(functi
     Route::post('/import-roles', [RoleController::class, 'import'])->name('dashboard.roles.import');
     Route::post('/create', [RoleController::class, 'store'])->name('dashboard.roles.store');
     Route::put('/update/{id}', [RoleController::class, 'update'])->name('dashboard.roles.update');
-    Route::delete('/{id}', [RoleController::class, 'destroy'])->name('dashboard.roles.destroy');
+    Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->name('dashboard.roles.destroy');
 });
 
 // Attendence routes

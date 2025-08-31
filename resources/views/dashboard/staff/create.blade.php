@@ -12,12 +12,12 @@
     {{-- View List Buttons --}}
     <a href="{{ route('dashboard.staff') }}"
        class="bg-red-400 hidden sm:flex items-center hover:bg-red-600 text-white px-4 py-2 rounded-md">
-      <i class="ti ti-x mr-2"></i>
+      <i class="ti ti-list mr-2"></i>
       View List
     </a>
     <a href="{{ route('dashboard.staff') }}"
        class="bg-red-400 sm:hidden hover:bg-red-600 text-white px-3 py-2 rounded-md">
-      <i class="ti ti-x"></i>
+      <i class="ti ti-list"></i>
     </a>
   </div>
 
@@ -113,7 +113,7 @@
         <div class="relative border-2 border-dashed border-gray-300 rounded-lg hover:border-indigo-400 transition cursor-pointer bg-gray-50 p-6 extraOutline-id">
           <input type="file"
                  class="absolute inset-0 opacity-0 cursor-pointer staff-id-upload-input"
-                 accept="image/*" name="profile_picture">
+                 accept="image/*" name="id_proof">
           <span class="file-name-id hidden absolute inset-0 flex items-center justify-center text-base font-medium text-gray-700 bg-gray-50"></span>
           <div class="upload-instructions-id flex flex-col items-center bg-gray-50 justify-center pointer-events-none">
             <i class="fas fa-download text-indigo-500 text-3xl mb-2"></i>

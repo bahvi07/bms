@@ -13,7 +13,11 @@ class StaffController extends Controller
     public function index()
     {
         $staff = Staff::with('role')->get();
-        return view('dashboard.staff.index', compact('staff'));
+        $stf=Staff::all();
+        $total=$stf->count();
+        $activeStaff=$stf->where('status',1)->count();
+        $inactiveStaff=$stf->where('status',0)->count();
+        return view('dashboard.staff.index', compact('staff','stf','total','activeStaff','inactiveStaff'));
     }
     
     public function create()
@@ -86,6 +90,13 @@ class StaffController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function destroy($id)
+    {
+        $staff = Staff::findOrFail($id);
+        $staff->delete();
+        return redirect()->route('staff.index')->with('success', 'Staff member deleted successfully.');
     }
       
 }

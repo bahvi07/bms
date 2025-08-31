@@ -14,31 +14,31 @@
 <!-- Full button (only visible on sm and above) -->
 <a href="{{ route('dashboard.staff.create') }}"
    class="bg-green-400 hidden sm:flex items-center hover:bg-green-600 text-white px-4 py-2 rounded-md">
-    <i class="ti ti-plus mr-2"></i>
+    <i class="ti ti-table-plus mr-2"></i>
     Add New Staff
 </a>
 
 <!-- Icon-only button (only visible below sm) -->
 <a href="{{ route('dashboard.staff.create') }}"
    class="bg-green-400 sm:hidden hover:bg-green-600 text-white px-3 py-2 rounded-md">
-    <i class="ti ti-plus"></i>
+    <i class="ti ti-table-plus"></i>
 </a>     
 </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
         <div class="bg-white p-6 rounded-lg shadow">
             <h2 class="text-xl font-medium mb-1">Total Staff</h2>
-            <p class="text-3xl font-bold">20</p>
+            <p class="text-3xl font-bold">{{$total}}</p>
         </div>
         
         <div class="bg-white p-6 rounded-lg shadow">
             <h2 class="text-xl font-medium mb-1">Active Staff</h2>
-            <p class="text-3xl font-bold text-green-400">5</p>
+            <p class="text-3xl font-bold text-green-400">{{$activeStaff}}</p>
         </div>
         
         <div class="bg-white p-6 rounded-lg shadow">
             <h2 class="text-xl font-medium mb-4">Inactive Staff</h2>
-            <p class="text-3xl font-bold text-red-500">15</p>
+            <p class="text-3xl font-bold text-red-500">{{$inactiveStaff}}</p>
         </div>
     </div>
 
@@ -90,24 +90,29 @@
     <div class="relative overflow-x-auto bg-white shadow-md sm:rounded-lg mt-6 p-2">
     {{-- Table --}}
     <table id="staff-table" class="table  bg-white table-bordered w-full">
-        <thead class="text-xs text-gray-700 uppercase">
-            <tr class="text-center  text-dark">
+        <thead class="text-xs text-gray-700  uppercase">
+            <tr class="text-center  bg-gray-800 text-white">
                 <th class="px-6 py-3">Staff</th>
                 <th class="px-6 py-3">Contact</th>
                 <th class="px-6 py-3">Role</th>
                 <th class="px-6 py-3">Shift</th>
                 <th class="px-6 py-3">Salary</th>
                 <th class="px-6 py-3">Status</th>
+                <th class="px-6 py-3">Action</th>
             </tr>
         </thead>
         <tbody>
-           {{-- @foreach($staff as $s)
-<tr id="row-{{ $measurement->id }}" class="bg-white border-b text-center">
-    <td class="px-6 py-4 col-iteration">{{ $loop->iteration }}</td>
-    <td class="px-6 py-4 col-full-name">{{ $s->full_name }}</td>
+           @foreach($stf as $s)
+<tr id="row-{{ $s->id }}" class="bg-white border-b text-center">
+   <td class="px-6 py-4 col-full-name flex items-center">
+  <img id="profilePreview" class="w-10 h-10 p-1 rounded-full ring-1 ring-gray-300 dark:ring-gray-500 mr-2"
+       src="{{ $s->profile_picture ? asset('storage/' . $s->profile_picture) : "https://avatar.iran.liara.run/public" }}" alt="Bordered avatar">
+  <span>{{ $s->full_name }}</span>
+</td>
+
     <td class="px-6 py-4 col-phone">{{ $s->phone }}</td>
-    <td class="px-6 py-4 col-role">{{ $s->role }}</td>
-      <td class="px-6 py-4 col-shift">{{ $s->shift_start_time }}-{{$s->shift_end_time}}</td>
+    <td class="px-6 py-4 col-role">{{ $s->role->role }}</td>
+      <td class="px-6 py-4 col-shift">{{ $s->shift_start_time }} AM -{{$s->shift_end_time}} PM</td>
       <td class="px-6 py-4 col-salary">{{ $s->salary }}</td>
        <td class="px-6 py-4 col-status user-select-none">
     @if($s->status == 1)
@@ -122,13 +127,13 @@
             class="text-white btn bg-green-500 hover:bg-green-600 rounded-lg px-5 border-none">
             <i class="ti ti-edit"></i>
         </button>
-        <button onclick="deleteMeasurement({{ $s->id }})"
+        <button onclick="deleteStaff({{ $s->id }})"
             class="text-white btn bg-red-500 hover:bg-red-700 rounded-lg px-5 ml-2 border-none">
             <i class="ti ti-trash"></i>
         </button>
     </td>
 </tr>
-@endforeach --}}
+@endforeach
 
         </tbody>
     </table>

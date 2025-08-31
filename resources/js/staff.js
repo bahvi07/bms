@@ -149,13 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.set('profile_picture', formData.get('photo'));
                 formData.delete('photo');
             }
-
-            // Log form data for debugging
-            console.log('Form data being sent:');
-            for (let [key, value] of formData.entries()) {
-                console.log(`${key}:`, value);
-            }
-
+            
             const url = `/dashboard/staff/store`;
             
             const res = await fetch(url, {

@@ -54,4 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#roles-table').DataTable({
         responsive: true,
     });
+    $('#staff-table').DataTable({
+        responsive: true,
+    });
 });

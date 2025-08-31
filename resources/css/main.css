@@ -54,6 +54,6 @@ p,tr,td,th,label,h1,h2,h3,h4,h5,h6,span,a,button{
 select,option{
     cursor: pointer;
 }
-#personal-info input,select{
+#staff-info input,select{
     background-color: var(--bg-color);
 }   
