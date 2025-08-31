@@ -41,7 +41,7 @@ footer {
 #length,
 #devliery-date,
 #set-priority,
-.modal-box{
+.modal-box,#search-staff{
     background-color: var(--bg-color);
 }
 .m-f,.fabric-type,.qty,.un{
