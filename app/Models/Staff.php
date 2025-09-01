@@ -46,10 +46,22 @@ class Staff extends Model
     // Model Events to manage assigned count in staff_roles table
     protected static function booted()
     {
-        // ✅ Fix: Generate staff_code BEFORE creation
+        
         static::creating(function($staff) {
-            $staffCount = Staff::count();
-            $staff->staff_code = 'STF-' . str_pad($staffCount + 1, 3, '0', STR_PAD_LEFT);
+            // Get the highest existing staff code number
+            $lastStaffCode = Staff::whereNotNull('staff_code')
+                ->orderByRaw('CAST(SUBSTRING(staff_code, 5) AS UNSIGNED) DESC')
+                ->value('staff_code');
+            
+            if ($lastStaffCode) {
+                // Extract number from STF-XXX format
+                $lastNumber = (int) substr($lastStaffCode, 4);
+                $nextNumber = $lastNumber + 1;
+            } else {
+                $nextNumber = 1; // First staff member
+            }
+            
+            $staff->staff_code = 'STF-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
         });
         
         // When staff member is added, increment assigned count in staff_roles table
