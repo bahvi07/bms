@@ -113,7 +113,7 @@
     <td class="px-6 py-4 col-phone">{{ $s->phone }}</td>
     <td class="px-6 py-4 col-role">{{ $s->role->role }}</td>
       <td class="px-6 py-4 col-shift">{{ $s->shift_start_time }} AM -{{$s->shift_end_time}} PM</td>
-      <td class="px-6 py-4 col-salary">{{ $s->salary }}</td>
+      <td class="px-6 py-4 col-salary"> {{ $s->salary ? $s->salary->base_salary : 'N/A' }}</td>
        <td class="px-6 py-4 col-status user-select-none">
     @if($s->status == 1)
         <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-600">Active</span>

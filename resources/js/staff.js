@@ -2,7 +2,7 @@ import { getCsrfToken } from './main.js';
 
 const DEFAULT_IMG = "https://avatar.iran.liara.run/public"; //  placeholder
 
-// Helper function to convert DD-MM-YYYY to YYYY-MM-DD
+// Helper function to convert DD-MM-YYYY or DD-MM-YY to YYYY-MM-DD
 function convertDateFormat(dateString) {
     if (!dateString) return '';
     
@@ -11,12 +11,17 @@ function convertDateFormat(dateString) {
         return dateString;
     }
     
-    // Convert from DD-MM-YYYY to YYYY-MM-DD
+    // Convert from DD-MM-YYYY or DD-MM-YY to YYYY-MM-DD
     const parts = dateString.split('-');
     if (parts.length === 3) {
         const day = parts[0];
         const month = parts[1];
-        const year = parts[2];
+        let year = parts[2];
+        
+        // Handle 2-digit years (YY -> 20YY)
+        if (year.length === 2) {
+            year = '20' + year;
+        }
         
         // Validate date parts
         if (day && month && year && day.length === 2 && month.length === 2 && year.length === 4) {

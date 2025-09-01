@@ -46,11 +46,14 @@ class Staff extends Model
     // Model Events to manage assigned count in staff_roles table
     protected static function booted()
     {
+        // ✅ Fix: Generate staff_code BEFORE creation
+        static::creating(function($staff) {
+            $staffCount = Staff::count();
+            $staff->staff_code = 'STF-' . str_pad($staffCount + 1, 3, '0', STR_PAD_LEFT);
+        });
+        
         // When staff member is added, increment assigned count in staff_roles table
         static::created(function($staff) {
-            $lastStaff=Staff::latest('id')->first();
-            $nextId=$lastStaff?$lastStaff->id+1:1;
-            $staff->staff_code = 'STF-'.str_pad($nextId, 3, '0', STR_PAD_LEFT);
             if ($staff->role_id) {
                 $staff->role()->increment('assigned');
             }
@@ -84,8 +87,10 @@ class Staff extends Model
         return $this->belongsTo(StaffRole::class, 'role_id');
     }
 
-    public function salaries()
-    {
-        return $this->hasMany(Salary::class, 'staff_id');
-    }
+public function salary()
+{
+    return $this->hasOne(Salary::class, 'staff_id');
+}
+
+
 }

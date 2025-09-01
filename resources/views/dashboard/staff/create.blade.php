@@ -36,11 +36,11 @@
 
     <!-- Right: Staff ID -->
     <input 
-    type="text" 
+    type="hidden" 
     value="{{ old('staff_code', $staff->staff_code ?? '') }}" 
     name="staff_code"
     disabled
-    class="block w-48 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2 bg-gray-100 cursor-not-allowed text-right"
+    class=" w-48 rounded-lg shadow-sm sm:text-sm p-2 cursor-not-allowed text-right"
 >
 
 </div>

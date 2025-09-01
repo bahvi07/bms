@@ -13,7 +13,7 @@ class StaffController extends Controller
 {
     public function index()
     {
-        $staff = Staff::with('role')->get();
+      $staff = Staff::with(['role', 'salary'])->get();
         $stf=Staff::all();
         $total=$stf->count();
         $activeStaff=$stf->where('status',1)->count();
@@ -67,21 +67,26 @@ class StaffController extends Controller
             'pending_amount' => $validated['base_salary'],
         ]);
 
-        // ✅ Redirect back with flash success (for Blade)
-         return response()->json([
-        'message' => 'Staff created successfully!',
-        'staff' => $staff
-    ], 201);
-    } 
-    catch (ValidationException $e) {
-        return redirect()->back()
-                         ->withErrors($e->errors())
-                         ->withInput();
-    } 
-    catch (\Exception $e) {
-        return redirect()->back()
-                         ->with('error', 'An error occurred: '.$e->getMessage())
-                         ->withInput();
+        // ✅ Return JSON response
+        return response()->json([
+            'success' => true,
+            'message' => 'Staff created successfully!',
+            'staff' => $staff
+        ], 201);
+        
+    } catch (ValidationException $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Validation failed',
+            'errors' => $e->errors()
+        ], 422);
+        
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'An error occurred: ' . $e->getMessage(),
+            'error' => $e->getMessage()
+        ], 500);
     }
 }
 
