@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->uuid('id')->primary();  // Primary key as UUID
+            $table->string('staff_code')->unique(); // Unique staff code
             $table->string('full_name'); // Required field
             $table->string('phone'); // Required field (not nullable)
             $table->string('email')->unique()->nullable(); // Optional but unique

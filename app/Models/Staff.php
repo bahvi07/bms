@@ -26,6 +26,7 @@ class Staff extends Model
     }
     
     protected $fillable = [
+        'staff_code',
         'full_name',
         'phone', 
         'email',
@@ -47,6 +48,9 @@ class Staff extends Model
     {
         // When staff member is added, increment assigned count in staff_roles table
         static::created(function($staff) {
+            $lastStaff=Staff::latest('id')->first();
+            $nextId=$lastStaff?$lastStaff->id+1:1;
+            $staff->staff_code = 'STF-'.str_pad($nextId, 3, '0', STR_PAD_LEFT);
             if ($staff->role_id) {
                 $staff->role()->increment('assigned');
             }
@@ -78,5 +82,10 @@ class Staff extends Model
     public function role()
     {
         return $this->belongsTo(StaffRole::class, 'role_id');
+    }
+
+    public function salaries()
+    {
+        return $this->hasMany(Salary::class, 'staff_id');
     }
 }

@@ -27,11 +27,24 @@
       {{-- <CHANGE> Single form handles all fields; enctype enables file uploads --}}
       <form action="#" method="POST" class="lg:col-span-8 bg-white rounded-lg mb-4" id="staff-info" enctype="multipart/form-data">
         @csrf
-        <h2 class="text-lg font-semibold mb-4 flex items-center">
-          <i class="ti ti-user mr-2 text-gray-600"></i>
-          Personal Information
-        </h2>
- 
+        <div class="flex items-center justify-between mb-4">
+    <!-- Left: Heading -->
+    <h2 class="text-lg font-semibold flex items-center">
+        <i class="ti ti-user mr-2 text-gray-600"></i>
+        Personal Information
+    </h2>
+
+    <!-- Right: Staff ID -->
+    <input 
+    type="text" 
+    value="{{ old('staff_code', $staff->staff_code ?? '') }}" 
+    name="staff_code"
+    disabled
+    class="block w-48 rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2 bg-gray-100 cursor-not-allowed text-right"
+>
+
+</div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           <div>
@@ -105,6 +118,13 @@
                      required>
             </div>
           </div>
+           <div class="md:col-span-2">
+            <label for="salary" class="block text-sm font-medium text-gray-700">Base Salary*</label>
+            <input type="text" id="salary" name="base_salary"
+                   placeholder="Enter salary amount" required
+                   class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 sm:text-sm p-2">
+        </div>
+
         </div>
 
         <h2 class="text-lg font-semibold mt-4 mb-4 flex items-center">Documents</h2>

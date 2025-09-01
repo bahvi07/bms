@@ -112,7 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const formData = new FormData(staffForm);
-            
+            console.log("🚀 Staff Form Data before submit:");
+for (let [key, value] of formData.entries()) {
+    console.log(`${key}:`, value);
+}
+
             // Convert date format before sending
             const joiningDate = formData.get('joining_date');
             if (joiningDate) {
@@ -162,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const data = await res.json().catch(() => ({}));
+console.log("📥 Server Response:", data);
 
             if (!res.ok) {
                 const msg = data.message || Object.values(data.errors || {}).flat().join('\n');
